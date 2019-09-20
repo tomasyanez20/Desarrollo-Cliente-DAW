@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //Crea un programa que pida al usuario que introduzca una edad y muestre el siguiente mensaje en función del número introducido:
+    var n = prompt("Introduce la edad: ");
+
+        if(n>=0 && n <= 12){
+            document.write("Niño ");
+        }else if(n>=13 && n <= 26){
+            document.write("Joven ");
+        }else if (n>=26 && n <= 60){
+            document.write("Adulto ");
+        }else if(n>= 60){
+            document.write("Jubilado ");
+        }
+
+    </script>
+</body>
+</html>

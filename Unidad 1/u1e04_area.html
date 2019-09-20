@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    figura= prompt("Introduce la figura con la que quieres trabajar: S-T-C: ")
+        if(figura=='S'){
+            document.write("Cuadrado <br>");
+            ladoC= prompt("Introduce el lado del cuadrado: ");
+            document.write("Lado: " + ladoC + " cm <br>");
+            document.write("Área: " + ladoC*ladoC + "cm^2 <br>");
+            document.write("Perímetro: " + ladoC*4 + " cm <br>");
+        }
+        if(figura=='T'){
+            document.write("Triángulo <br>");
+            altura= prompt("Introduce la altura del triángulo: ");
+            base = prompt("Introduce la base: ");
+            document.write("Área: " +  (base * altura) / 2 + "cm^2 <br>");
+            document.write("Perímetro: " + ladoC*4 + " cm <br>");
+        }
+        if(figura=='C'){
+            document.write("Círculo <br>");
+            radio= prompt("Introduce el radio del círculo: ");
+            document.write("Radio: " + radio + " cm <br>");
+            document.write("Área: " + Math.PI* Math.pow(radio,2) + "cm^2 <br>");
+            document.write("Perímetro: " + Math.PI* radio + " cm <br>");
+        }
+    </script>
+</body>
+</html>

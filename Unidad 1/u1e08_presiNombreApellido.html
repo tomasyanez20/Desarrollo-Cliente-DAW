@@ -11,21 +11,40 @@
 <body>
     <script>
         //	En primer lugar, se carga un prompt donde pregunta: “¿Cuál fue el primer presidente de la democracia española?”
-    //	En caso de que el usuario introduzca mal nombre y apellido, muestre como mensaje: “ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?”
-    //En caso de que el usuario introduzca el nombre del presidente (solamente) el prompt muestre como mensaje “Te falta el apellido. ¿Cuál fue el primer presidente de la democracia española?”.
-    //	 En caso de que el usuario introduzca el apellido del presidente (solamente) el prompt muestre como mensaje “Te falta el nombre. ¿Cuál fue el primer presidente de la democracia española?”.
+    //	En caso de que el usuario introduzca mal nombre y apellido, muestre como mensaje: 
+    //“ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?”
+    //En caso de que el usuario introduzca el nombre del presidente (solamente) el prompt muestre como mensaje 
+    //“Te falta el apellido. ¿Cuál fue el primer presidente de la democracia española?”.
+    //	 En caso de que el usuario introduzca el apellido del presidente (solamente) el prompt muestre
+    // como mensaje “Te falta el nombre. ¿Cuál fue el primer presidente de la democracia española?”.
 
         
         
-        do{
-        var pres = prompt("¿Cuál es el primer presidente de la democracia?");
         
-        }while(pres!="suarez"){
-            document.write("ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?");
-            
+        var cadena = prompt("¿Cuál es el primer presidente de la democracia?");
+        //adolfo suarez
+        var nom= cadena.substr(0,6); //inicio, longitud
+
+        var ape = cadena.substr(7,13);
+        var resp ;
+
+       
+        document.write("Nombre :" + nom + " , apellido : " + ape + " introducidos por teclado ");
+
+        while(nom!="adolfo" && ape!="suarez"){
+            resp = prompt("ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?");
+            nom= resp.substr(0,6);
+            ape = resp.substr(7,13);
         }
+
+
         
-        document.write("Correcto, Suarez es el primer presidente");
+        //}while(pres!="suarez"){
+         //   document.write("ERROR. Inténtelo de nuevo. ¿Cuál fue el primer presidente de la democracia española?");
+            
+        //}
+        
+        //document.write("Correcto, Suarez es el primer presidente");
 
 
     </script>

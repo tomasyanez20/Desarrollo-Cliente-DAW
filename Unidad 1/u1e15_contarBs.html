@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     
+     var cadena="HolaBeBaBiiiiB";
+        document.write("La cadena " + cadena + " tiene " + cadena.length + " caracteres");
+     
+      function contarBs(cadena){
+        var cont=0;
+        for(var i=0;i<cadena.length;i++){
+
+            if(cadena[i]=="B"){
+                cont++;
+            }
+        }
+        document.write("<br>La cadena tiene " + cont + " B");
+      }
+      
+      contarBs(cadena);
+
+      //A continuación, escribe una función contarCaracter, similar a contarBs,
+      // pero que su segundo argumento indica el carácter que se quiere contar (en lugar de contar “B” mayúsculas).
+
+      function contarCaracter(cadena,n){
+        var cont=0;
+        for(var i=0;i<cadena.length;i++){
+            if(cadena[i]==n){
+                cont++
+            }
+        }
+        document.write("<br>La cadena tiene " + cont + " caracteres " + n);
+      }
+
+      contarCaracter(cadena,"i")
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        //Funcion que indica si el número pasado es par o impar
+        function esParRec(n){
+            if(n==0){
+                return true;
+            }
+            if(n==1){
+                return false;
+            }
+            return esParRec(n-2);
+        }
+
+       
+       var n= prompt("Introduce un número: ");
+       
+        if(esParRec(n)==true){
+            document.write("El número " + n + " es par");
+        }else{
+            document.write("El número " + n + " es impar");
+        }
+
+        
+
+
+    </script>
+</body>
+</html>

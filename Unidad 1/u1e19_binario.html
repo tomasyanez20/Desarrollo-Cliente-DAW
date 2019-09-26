@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   // Crea una función binario, que pida un número y escriba ese número en binario. Para ello, habrá que pasarlo a binario dividiendo entre 2,
+   // y construir una cadena con 0 y 1.
+
+        var n=28;
+        var div;
+        var cadena="";
+        var resultado="";
+        var numeroInicial= n;
+        do{
+            div= Math.trunc(n/2); //Coje el entero sólo       
+            resto= n%2;
+            cadena += resto;
+            n=div; 
+        }while(div>0);
+
+        //dar la vuelta a la cadena
+        for(var i=cadena.length-1;i>=0;i--){
+            resultado += cadena[i];
+        }
+
+        document.write("<br>Número  " + numeroInicial + " en binario hallado iterativamente: " + resultado);
+
+
+        /*
+        var res="";
+        var cad="";
+        //Recursivamente
+        function binRec(n){
+            div= Math.trunc(n/2);
+            if(div>0){           
+                resto= n%2;
+                cad += resto;      
+                document.write ("<br> " +  div);
+              return binRec(div);
+            //}else{
+             //   return cad;
+             
+            }
+            
+        }
+
+        binRec(28);
+       // document.write ("<br> es " + binRec(28) );
+
+*/
+
+    </script>
+</body>
+</html>

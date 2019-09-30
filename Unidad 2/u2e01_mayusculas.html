@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   // Tenemos un array con los días de la semana en minúsculas.
+    //Crea un script que, utilizando el array anterior, escriba una lista con los días de la semana con la primera letra en mayúsculas.
+    var diasSemana = ["lunes","martes","miercoles","jueves","viernes","sabado","domingo"];
+    var lista = [];
+
+    for(var i=0;i<diasSemana.length;i++){
+        var dia = diasSemana[i];
+       
+         dia = dia.replace(dia.charAt(0),dia.charAt(0).toUpperCase());
+        // document.write(dia + " <br>");
+         lista[i]= dia;
+    }
+
+    for(var i=0;i<lista.length;i++){
+        document.write(lista[i] + " ");
+    }
+
+
+    </script>
+</body>
+</html>

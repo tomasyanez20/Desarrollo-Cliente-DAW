@@ -10,14 +10,21 @@
     <script>
    // Crea un script que pida una frase al usuario, y muestre el número de palabras que componen la frase. Si no hay ninguna, también debe indicarlo
     var cadena = prompt("Introduce una frase");
+    var lista= [];
+    var cont=0;
 
-    for(var i=0;i<cadena.length;i++){
-        if(cadena[i] =='a'){
-            document.write("espacio");
-        }
-        document.write(frase[i] + " <br>");
+    lista= cadena.split(" "); //Split devuelve un array de palabras de la frase separada por el separador caracter indicado.
+
+    for(var i=0;i<lista.length;i++){  
+        cont++;
+        document.write(lista[i] + " <br>");
     }
 
+    if(cont==0){
+        document.write("La frase no tiene palabras");
+    }else{
+        document.write("La frase tiene " + cont + " palabras");
+    }
 
     </script>
 </body>

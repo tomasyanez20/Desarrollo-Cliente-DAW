@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*
+   Crea un programa que pida al usuario su nombre y apellidos y muestre:
+1.	El tamaño del nombre más los apellidos (sin contar espacios).
+2.	La cadena en minúsculas y en mayúsculas.
+3.	Que divida el nombre y los apellidos y los muestre en 3 líneas, donde ponga Nombre: / Apellido 1: / Apellido 2:
+4.	Una propuesta de nombre de usuario, compuesto por la inicial del nombre, el primer apellido y 
+    la inicial del segundo apellido: ej. Para Laura Folgado Galache sería lfolgadog.
+5.	Una propuesta de nombre de usuario compuesto por las tres primeras letras del nombre y de los dos apellidos: ej. laufolgal.
+
+
+
+   */
+    var cadena = prompt("Introduce tu nombre y apellidos: ");
+
+    function nya(cadena){
+      
+        var listaPalabras=[]; //array que contendrá las palabras  de la frase
+        var tam=0;
+        var cadenaSinEspacios;
+        var propuesta=""; // cadena que contiene la propuesta de nombre
+        var propuesta2=""; // cadena 2 que contiene la propuesta de nombre
+
+       
+
+        cadenaSinEspacios = cadena.replace(/\s/g,''); //remplaza el espacio por carácter vaciío para quitarlos
+       
+        //document.write(cadenaSinEspacios);
+
+        for(var i=0;i<cadenaSinEspacios.length;i++){
+            tam++;  //contar los caracteres
+        }
+
+
+        document.write("Nombre y apellidos: " + cadena + "<br>");
+        document.write("El tamaño  es:  " + tam + "<br>");
+        document.write("La cadena en mayúsculas es:  " + cadena.toUpperCase() + "<br>");
+        document.write("La cadena en mayúsculas es:  " + cadena.toLowerCase() + "<br>");
+
+
+        listaPalabras=cadena.split(' '); //Para dividir la frase por palabras
+
+        for(var i=0;i<listaPalabras.length;i++){
+            if(i==0){
+                document.write("Nombre: " + listaPalabras[0] + " <br>");
+                propuesta += listaPalabras[0].charAt(0).toLowerCase();
+                propuesta2 += listaPalabras[0].substring(0,3).toLowerCase(); //pos ini n car
+            }else if(i==1){
+                document.write("Apellido 1: " + listaPalabras[1] + " <br>");
+                propuesta += listaPalabras[1].toLowerCase();
+                propuesta2 += listaPalabras[1].substring(0,3).toLowerCase();
+            }else if(i==2){
+                document.write("Apellido 2: " + listaPalabras[2] + " <br>");
+                propuesta += listaPalabras[2].charAt(0).toLowerCase();
+                propuesta2 += listaPalabras[2].substring(0,3).toLowerCase();
+           }   
+        }
+
+        document.write("Primera propuesta de nombre de usuario: " + propuesta + " <br>");
+        document.write("Segunda propuesta de nombre de usuario: " + propuesta2 + " <br>");
+
+       
+
+    }
+
+    nya(cadena);
+
+
+    </script>
+</body>
+</html>

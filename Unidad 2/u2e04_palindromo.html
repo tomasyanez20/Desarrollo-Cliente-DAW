@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*
+   Definir una función que determine si la cadena de texto que se le pasa como parámetro es un palíndromo, es decir,
+    si se lee de la misma forma desde la izquierda y desde la derecha. Ejemplo de palíndromo: “La ruta nos aporto otro paso natural”.
+
+** Truco: quitar los espacios a la cadena, convertir la cadena en un array de caracteres y utilizar el método .reverse() de los arrays,
+ que cambia el orden de los elementos de un array.
+
+
+   */
+    var cadena = prompt("Introduce una frase");
+
+    function esPalin(cadena){
+        cadena = cadena.trim();
+        var lista=[];
+        for(var i=0;i<cadena.length;i++){
+            lista[i]=cadena[i];
+        }
+
+        if(lista == lista.reverse()){
+            document.write("La frase " + cadena + " es palíndromo"); 
+        }else{
+            document.write("La frase " + cadena + " no es palíndromo"); 
+        }
+
+    }
+
+    esPalin(cadena);
+
+
+    </script>
+</body>
+</html>

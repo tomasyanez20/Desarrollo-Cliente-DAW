@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*
+   Crea un programa que pida al usuario el valor del radio y muestre por pantalla:
+1.	El valor del radio.
+2.	El valor del diámetro.
+3.	El valor del perímetro de la circunferencia.
+4.	El valor del área del círculo.
+5.	El valor del área de la esfera.
+6.	El valor del volumen de la esfera.
+• El valor de Pi debes obtenerlo del objeto Math, no introducirlo manualmente.
+• Debes escribir al lado si son cm, o cm2, o cm3.
+• Como datos de muestra, si metes 5, deberías obtener aproximadamente: 5 / 10 / 31,41 / 78,54 / 314,15 / 523,59.
+
+   */
+
+        var opcion;
+
+        r = prompt("Introduce el radio del círculo: "); 
+
+        document.write("<br>El valor del radio es : " + r + " cm");  
+        document.write("<br>El valor del diámetro es : " + 2*r + " cm");  
+        document.write("<br>El valor del perímetro es : " + 2*Math.PI*r + " cm");  
+        document.write("<br>El valor del área del círculo es : " + Math.PI*(r*r) + " cm2"); 
+        document.write("<br>El valor del área de la esfera es : " + 4*Math.PI*(r*r) + " cm2"); 
+        volumen = (4/3)* Math.PI*Math.pow(r,3) ;
+        document.write("<br>El valor del volumen de la esfera es : " + Math.round(volumen*100)/100 + " cm3");
+
+
+    </script>
+</body>
+</html>

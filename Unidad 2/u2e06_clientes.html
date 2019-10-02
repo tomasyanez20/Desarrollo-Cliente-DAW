@@ -37,16 +37,15 @@ A partir del mismo, el usuario podrá elegir del menú:
 
         var opcion;
 
-        document.write("1. Todos: se mostrará una tabla con los valores que están en la variable anterior.<br>");
-        document.write("2. Clientes de una localidad: se pedirá una localidad al usuario y se mostrarán en una tabla los nombres y cuotas de las personas que viven en esa localidad.<br>");
-        document.write("3. Clientes que tengan una cuota mayor que un valor pedido al usuario: se pedirá la cuota y se mostrarán en una tabla los nombres de clientes, localidad y cuotas de aquellos que tienen una cuota superior al valor introducido por el usuario<br>");
+        
        
-        opcion = prompt("Introduce una opción del menú: ");
+        opcion = prompt("1. Todos: se mostrará una tabla con los valores que están en la variable anterior.\n " + 
+             "2. Clientes de una localidad: se pedirá una localidad al usuario y se mostrarán en una tabla los nombres y cuotas de las personas que viven en esa localidad. \n " + 
+             "3. Clientes que tengan una cuota mayor que un valor pedido al usuario: se pedirá la cuota y se mostrarán en una tabla los nombres de clientes, localidad y cuotas de aquellos que tienen una cuota superior al valor introducido por el usuario\n " +
+             "Introduce una opción del menú:");
        
        switch(opcion){
             case "1":
-                  var tbl = document.createElement('table');
-                  tbl.setAttribute('border', '1');
 
                 for(var i=0;i<clientes.length;i++){
                    
@@ -56,11 +55,32 @@ A partir del mismo, el usuario podrá elegir del menú:
                     }
                     document.write("<br>");
                 }
-                document.write("<table>");
                 break;
             case "2":
+            var localid = prompt("Introduce una localidad:");
+            for(var i=0;i<clientes.length;i++){
+                if(clientes[i][1]==localid){              
+                        document.write(clientes[i][0] + " ");
+                        document.write(clientes[i][2] + " ");
+                        document.write("<br>");    
+                }
+                   
+               }
+
+
             break;
             case "3":
+                     var cuotat = prompt("Introduce una cuota:");
+                    for(var i=0;i<clientes.length;i++){
+                        if(clientes[i][2] > cuotat){
+                            for(var j=0;j<clientes[0].length;j++){
+                                document.write(clientes[i][j] + " ");
+                            } 
+                            document.write("<br>");
+                        }
+                    
+                    }
+
             break;
             default: 
                 alert("No has introducido ninguna opción del menú");

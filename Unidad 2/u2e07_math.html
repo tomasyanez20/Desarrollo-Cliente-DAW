@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*
+   Crea un programa que pida al usuario que elija una opción del siguiente menú:
+1.	Potencia.
+2.	Raíz.
+3.	Redondeo.
+4.	Trigonometría.
+Si el usuario introduce 1, se le deberá pedir una base y un exponente y se mostrará el resultado en pantalla (La potencia de X elevado a Y es: )
+Si el usuario introduce 2, se le pedirá un número (no negativo) y se mostrará el resultado en pantalla (La raíz de X es: )
+Si el usuario introduce 3, se le pedirá un decimal por pantalla y se mostrará el redondeo al entero más próximo, al alta y a la baja.
+Si el usuario introduce 4, se le pedirá un ángulo (entre 0 y 360) y se le mostrarán por pantalla los valores trigonométricos del seno, coseno y tangente.
+
+   */
+
+        var opcion;
+
+        opcion = prompt("1. Potencia.\n " + 
+             "2. Raiz \n " + 
+             "3. Redondeo\n " +
+             "4. Trigonometría\n " +
+             "Introduce una opción del menú:");
+       
+       switch(opcion){
+                    case "1":
+                            var base = prompt("Introduce La base:");
+                            var expo = prompt("Introduce el exponente:");
+                            var resultado=1;
+
+                            for(var i=0;i<expo;i++){
+                                resultado = resultado * base;
+                            }
+
+
+                            document.write("La potencia de " + base + " elevado a " + expo  + " es " + resultado );
+                            //Math.pow(2,3);
+               
+                     break;
+                    case "2":
+                            do{
+                                var n = prompt("Introduce un número positivo:");
+                            }while(n<0);
+
+                            document.write("La raíz cuadrada de " + n + " es :  " + Math.sqrt(n));
+
+                    break;
+                    case "3":
+                        var nd = prompt("Introduce un número decimal:");
+                        document.write("El número " + nd + " redondeado es :  " + Math.round(nd));
+
+                     break;
+                     case "4":
+                        do{
+                             var a = prompt("Introduce un ángulo entre (0-360):");
+                        }while(a<0 || a > 360);
+                        document.write("Ángulo :  " + a + "<br>seno :  " + Math.sin(a) + " <br>coseno :  " + Math.cos(a) +  " <br>tangente :  " + Math.tan(a) );
+
+                     break;
+                    
+                     default: 
+                         alert("No has introducido ninguna opción del menú");
+       }
+    
+
+
+    </script>
+</body>
+</html>

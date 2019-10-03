@@ -15,16 +15,38 @@
 
    */
     var cadena = prompt("Introduce una frase");
+    var cuentaMayus=0;
+    var cuentaMinus=0;
+    
+
 
     function infor(cadena){
-        cadena = cadena.trim();
-        var re= /A-Z/;
-        if(re.test(cadena)){
-            document.write("Tiene mayúsculas"); 
+        
+        for(var i=0;i<cadena.length;i++){
+            
+            if(cadena[i]==cadena[i].toUpperCase()){
+                cuentaMayus++;
+            }
+
+            if(cadena[i]==cadena[i].toLowerCase()){
+                cuentaMinus++;
+            }
+            //document.write(cadena[i]);
+        }
+
+
+        //document.write(cuentaMayus + " - " + cadena.length);
+        if(cuentaMayus==cadena.length){
+            document.write("la frase está en mayúsculas");
+        }else if(cuentaMinus==cadena.length){
+            document.write("la frase está en minúsculas");
+        }else{
+            document.write("la frase está en minúsculas y mayúsculas");
         }
 
     }
 
+    infor(cadena);
 
     </script>
 </body>

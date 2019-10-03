@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*
+Crea un programa que genere los números ganadores de la bonoloto:
+ son 6 números entre 1 y 50 y el complementario entre el 1 y el 9. Además, los números no se pueden repetir.
+
+   */
+        var nAlea;
+        var vector=[];
+        var repe=false;
+
+       for(var i= 0;i<7;i++){
+           nAlea= Math.trunc(Math.random()*50 +1 ); //numero entre 1 y 50
+           vector[i]=nAlea;
+           if(i==6){
+            nAlea= Math.trunc(Math.random()*9 +1 ); //numero entre 9 y 1
+           vector[i]=nAlea;  
+           }
+       }
+       
+
+      // imprimeVector(vector);
+       //Eliminar repetidos
+       for(var i= 0;i<vector.length;i++){
+            for(var j= i+1;j<vector.length-1;j++){  
+                if((vector[i]==vector[j])){             //si i = j se pisa i con otro valor aleatorio
+                   // alert(vector[i] + " == " + vector[j]);
+                    do{
+                        vector[i]= Math.trunc(Math.random()*50 +1 );
+                     //   alert("Regenerar i " + vector[i] + " == " + vector[j]);
+                    }while(vector[i]==vector[j]);
+                }            
+                
+            }
+       }
+
+
+       imprimeVector(vector);
+
+       //Imprimir vector
+       
+
+       function imprimeVector(vector){
+            for(var i= 0;i<vector.length;i++){
+                document.write(vector[i] + " ");
+            }
+            document.write("<br>");
+       }
+
+
+    </script>
+</body>
+</html>

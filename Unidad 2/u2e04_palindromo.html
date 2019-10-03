@@ -20,13 +20,25 @@
     var cadena = prompt("Introduce una frase");
 
     function esPalin(cadena){
-        cadena = cadena.trim();
+        cadena = cadena.replace(/\s/g,'');
         var lista=[];
+        var cadenaR="";
+        var esPalin=true;
+/*
         for(var i=0;i<cadena.length;i++){
             lista[i]=cadena[i];
+        }*/
+
+
+        for(var i=cadena.length-1;i>=0;i--){
+            cadenaR += cadena[i];
         }
 
-        if(lista == lista.reverse()){
+        //document.write("Original " + cadena + "<br>"); 
+        //document.write("Reversa  " + cadenaR+ "<br>"); 
+
+
+        if(cadena == cadenaR){
             document.write("La frase " + cadena + " es palíndromo"); 
         }else{
             document.write("La frase " + cadena + " no es palíndromo"); 

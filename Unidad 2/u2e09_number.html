@@ -28,9 +28,12 @@
             var ne = Number(nu);
         }while(Number.isInteger(ne)==false);
 
-
-        document.write("<br>El valor exponencial es : " + Math.E(ne)+ " cm");  
-       
+        document.write("<br>Número " + ne);
+        document.write("<br>El valor exponencial es : " + ne .toExponential());  
+        document.write("<br>2 decimales : " + ne.toFixed(4)); 
+        document.write("<br>En binario : " + ne.toString(2)); 
+        document.write("<br>En octal : " + ne.toString(8)); 
+        document.write("<br>En hexadecimal : " + ne.toString(16)); 
 
 
     </script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*
+Crea una función que devuelva el número más alto de los números que están en un array que se pasa por parámetro.
+El array puede ser: [232, 56, 33, 878, 988, 398, 100].
+
+
+   */
+
+    var vector= [232, 56, 200000, 878, 988, 398, 100,10000,10000];
+
+
+    //var mayor=0;
+    var mayor=vector[0];
+   function mayorVector(vector){
+            for(var i= 0;i<vector.length;i++){
+                if(vector[i]> mayor){
+                    mayor= vector[i];
+                }
+            }
+     return mayor;
+    }
+       document.write("El mayor es " + mayorVector(vector));
+
+
+    </script>
+</body>
+</html>

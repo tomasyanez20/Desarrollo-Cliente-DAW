@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <button id="crear" type="button">Crear</button>
+        <button id="cerrar" type="button">Cerrar</button>
+
+    <script>
+   /*
+Crea un documento con dos botones:
+•	Crear: te pregunta la URL a la que quieres acceder y crea una ventana con esa URL.
+Si la ventana ya existe, debe dar un mensaje al usuario y no hacer nada más.
+•	Cerrar: cierra la ventana que se ha creado con el primer botón. 
+Si la ventana no existe, debe dar un mensaje al usuario advirtiéndolo.
+
+Para asignar una acción a un botón, te puede servir este ejemplo:
+
+<div class= "botón" id="crear"></div>
+
+document.getElementById("crear").addEventListener(
+"click", crearVentana);
+function crearVentana() {
+	…
+}
+
+   */
+   var ventana;
+
+   
+
+   
+    function crearVentana() {
+        //var url = prompt ("Introduce la url: ");
+        
+        
+        //la ventana se había cerrado pero su valor no es undefined
+        if(ventana != undefined ){
+            alert("La ventana ya existe");
+        }
+        else{
+            ventana = window.open("https://www.educa.jcyl.es");
+        }
+
+        
+
+       // document.write("es " + ventana.closed);
+}
+
+    function cerrarVentana() {
+        if (ventana == undefined) {
+            alert ("La ventana no se ha creado")
+
+        } else {
+            ventana.close();
+            ventana= undefined;
+        }
+    }
+    
+
+    document.getElementById("crear").addEventListener("click", crearVentana);
+    document.getElementById("cerrar").addEventListener("click", cerrarVentana);
+
+    </script>
+</body>
+</html>

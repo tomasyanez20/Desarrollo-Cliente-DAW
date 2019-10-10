@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <iframe name="frame1" width="800" height="600"></iframe>
+    <br>
+    <input type="text" name="url">
+    <button name="b1" type="button" >Pulsa</button>
+    
+    <script>
+   /*
+Crea un documento con una caja de texto, destinada a introducir direcciones URL , un botón y 
+un iframe de 600x800. 
+Al hacer clic sobre el botón, la URL se cargará en el iframe.
+La caja de texto será un campo <input> con un id.
+Para obtener el nombre escrito en la caja de texto, puedes utilizar:
+document. getElementById(“..”).value.
+Para acceder al iframe, se puede acceder a frames que es una propiedad del objeto window,
+ de tipo array. El primer elemento (0) será la página cargada en el iframe, ya que sólo tenemos un iframe:
+window.frames[0].window.location….
+
+
+   */
+       document.getElementById("b1").addEventListener("click",cargarURL());
+
+
+
+        function cargarURL(){
+            window.open("https://www.educa.jcyl.es","frame1");
+            alert("Hola");
+        }
+  
+    </script>
+</body>
+</html>

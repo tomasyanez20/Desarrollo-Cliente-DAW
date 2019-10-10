@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <button id="boton1" type="button">Crear</button>
+        <iframe name="frame1" width="600" height="400"></iframe>
+    <script>
+   /*
+Crea una ventana vacía en el navegador, con un tamaño de 300x200.
+Desplaza la ventana por el navegador cada 1 segundo. Para cada movimiento, se calculará aleatoriamente las nuevas coordenadas,
+ teniendo en cuenta que el mínimo es 0 y el máximo, el tamaño de la ventana.  Además, cada vez que se mueve,
+  en la ventana se mostrarán las coordenadas x e y.
+Cuando pasen 2 minutos, la ventana se cerrará
+
+
+
+   */
+        var ventana;
+        var coordenadaX;
+        var coordenadaY;
+        ventana = window.open("","","width=300, height=200");
+
+        
+
+        function moverVentana(){
+            coordenadaX=Math.random()*300;
+            coordenadaY=Math.random()*200;
+            ventana.moveBy(coordenadaX,coordenadaY);
+            ventana.document.write("Coordenada X:  " + coordenadaX + "<br>");
+            ventana.document.write("Coordenada Y:  " + coordenadaY + "<br>");
+        }
+   
+        //La ventana se mueve cada segundo
+        ventana.setInterval(moverVentana,1000);
+    
+        //La ventana se cierra a los 2 minutos
+        ventana.setTimeOut(moverVentana,2*60*1000);
+
+
+  
+    </script>
+</body>
+</html>

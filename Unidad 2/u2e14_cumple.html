@@ -21,27 +21,40 @@ Además, que saque todos los años en que tu cumpleaños va a caer en domingo, d
     //var fechaFin = new Date(2020,5,24); //5   6 junio
    // var dia = prompt("Introduce el día de tu cumpleaños: ");
    // var mes = prompt("Introduce el mes de tu cumpleaños: ");
-    var d = new Date();
+    var dia = 3;
+    var mes = 7;
+    
+    
 
-    var mesActual = d.getMonth()+1;
-    var diferenciaMes=0;
+    //var mesActual = d.getMonth()+1;
+   // var diaActual = d.getDay();
 
-    if(mesActual < mes){
+    //var diferenciaMes=0;
+
+
+/*
+    if(mesActual < mes){    //si el mes actual es mayor que el mes de la fecha de cumpleaños
         diferenciaMes = mes - mesActual;
     }else if(mesActual > mes){
         var mesA12;
         mesA12 = 12- mesActual;
-        diferenciaMes = mes - mesActual;
+        diferenciaMes = mesA12+ mes;
     }
+*/
 
-    document.write("<br>mes actual " + mesActual ) ; 
+
+    document.write("Dia actual: " +  new Date().getDay() ) ;
+
+    document.write("<br> Meses hasta la fecha de cumple " + diferenciaMes ) ; 
 
    
     //var fechaCumnple = new Date(fechaActual.getYear(),9,10);
 
-   // var tFechaActual = fechaActual;
+    var tFechaActual = new Date();
 
-    //var diferencia = tFechaFin- tFechaActual;
+    var fechaCumple= 
+
+    var diferencia = tFechaCumple- tFechaActual;
 
    // document.write("<br>Quedan  " + diferencia/1000/60/60/24 + " dias");// + " el año de la fecha de fin es " + annoHoy );
 

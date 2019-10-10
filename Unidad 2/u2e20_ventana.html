@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <button id="botonCrear" type="button">Crear Ventana</button>
+        <button id="botonCerrar" type="button">Cerrar Ventana</button>
+        <button id="botonActivar" type="button">Activar Ventana</button>
+        <button id="botonMover100" type="button">Mover 100x100</button>
+        <button id="botonMoverIzquierda" type="button">Mover Izquierda</button>
+        <button id="botonMoverDerecha" type="button">Mover Derecha</button>
+        <button id="botonMoverArriba" type="button">Mover Arriba</button>
+        <button id="botonMoverAbajo" type="button">Mover Abajo</button>
+        <button id="botonEscribir" type="button">Escribir texto</button>
+        <button id="botonRestaurar" type="button">Restaurar Tamaño</button>
+        <button id="botonAumentar" type="button">Aumentar Tamaño</button>
+        <button id="botonDisminuir" type="button">Disminuir Tamaño</button>
+        <button id="botonEscribir2" type="button">Escribir texto (/n)</button>
+        <button id="botonBajarScroll" type="button">Bajar Scroll</button>
+        <button id="botonSubirScroll" type="button">Subir Scroll</button>
+
+
+    <script>
+   /*
+Crea una página web con varios botones:
+•	Crear ventana: crea una ventana con un tamaño de 200x100. Para hacerlo, utiliza el comando:
+a = window.open("", "miVentana", "width= 200, height=100")
+Si ya había una ventana abierta, la cierra.
+
+•	Cerrar: cierra la ventana abierta con el botón de Crear ventana. 
+•	Activar. Pone el foco en la venta. 
+•	Mover a 100 x 100: Coloca la ventana en la posición 100x100.
+•	Mover hacia la izquierda: Mueve la ventana 10 px hacia la izquierda.
+•	Mover hacia la derecha: Mueve la ventana 10 px hacia la derecha.
+•	Mover hacia la arriba: Mueve la ventana 10 px hacia arriba.
+•	Mover hacia abajo: Mueve la ventana 10 px hacia abajo.
+•	Escribir: Escribe una línea de texto en la ventana.
+•	Restaurar tamaño: restaura el tamaño a 100x 100.
+•	Aumentar tamaño: aumenta el tamaño en 10x10.
+•	Disminuir tamaño: disminuye el tamaño en 10x10.
+•	Escribir texto: escribe una línea de texto que ocupe toda la ventana y haga un salto de línea.
+•	Bajar: hace scroll hacia abajo, en 100px.
+•	Subir: hace scroll hacia arriba, en 100px.
+
+En todas las operaciones (excepto la primera), si la ventana no estaba abierta, dará un mensaje de error.
+
+
+
+
+   */
+   var ventana;
+
+   
+
+   document.getElementById("botonCrear").addEventListener("click", crearVentana);
+   document.getElementById("botonCerrar").addEventListener("click", cerrarVentana);
+   document.getElementById("botonActivar").addEventListener("click", activarVentana);
+   //Mover
+   document.getElementById("botonMover100").addEventListener("click", mover100Ventana);
+   document.getElementById("botonMoverIzquierda").addEventListener("click", moverIzquierda);
+   document.getElementById("botonMoverDerecha").addEventListener("click", moverDerecha);
+   document.getElementById("botonMoverArriba").addEventListener("click", moverArriba);
+   document.getElementById("botonMoverAbajo").addEventListener("click", moverAbajo);
+
+   document.getElementById("botonEscribir").addEventListener("click", escribir);
+   document.getElementById("botonEscribir2").addEventListener("click", escribir2);
+
+
+   document.getElementById("botonRestaurar").addEventListener("click", restaurar);
+   document.getElementById("botonAumentar").addEventListener("click", aumentar);
+   document.getElementById("botonDisminuir").addEventListener("click", disminuir);
+
+   document.getElementById("botonBajarScroll").addEventListener("click", bajar);
+   document.getElementById("botonSubirScroll").addEventListener("click", subir);
+
+
+
+    
+function crearVentana(){
+    if(ventana == null || ventana.closed ){
+        ventana = window.open("", "miVentana", "width= 200, height=100");
+        
+    }
+    else{
+        alert("La ventana ya existe");
+    }  
+}
+   
+function cerrarVentana(){
+    if(ventana == null ){
+        alert("La ventana no existe");
+    }
+    else{
+        ventana.close();
+        ventana = null;
+    }  
+}
+//poner el foco en la ventana
+function activarVentana(){
+    ventana.focus();
+}
+
+function mover100Ventana(){
+    ventana.focus();
+    ventana.moveTo(100,100);
+}
+
+function moverIzquierda(){
+    ventana.focus();
+    ventana.moveBy(-10,0);
+}
+
+function moverDerecha(){
+    ventana.focus();
+    ventana.moveBy(10,0);
+}
+
+function moverArriba(){
+    ventana.focus();
+    ventana.moveBy(0,-10);
+}
+
+function moverAbajo(){
+    ventana.focus();
+    ventana.moveBy(0,10);
+}
+
+function escribir(){
+    ventana.focus();
+    ventana.document.write("Hola esta es una línea");
+}
+
+function escribir2(){
+    ventana.focus();
+    ventana.document.write("Hola esta es una línea<br>");
+}
+
+function restaurar(){
+    ventana.focus();
+    ventana.resizeTo(100,100);
+}
+
+function aumentar(){
+    ventana.focus();
+    ventana.resizeBy(10,10);
+}
+
+function disminuir(){
+    ventana.focus();
+    ventana.resizeBy(-10,-10);
+}
+
+function bajar(){
+    ventana.focus();
+    ventana.scrollBy(0,100);
+}
+
+function subir(){
+    ventana.focus();
+    ventana.scrollBy(0,-100);
+}
+
+
+  
+    </script>
+</body>
+</html>

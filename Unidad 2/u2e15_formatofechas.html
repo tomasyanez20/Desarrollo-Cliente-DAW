@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*
+Crea un programa que muestre la fecha actual en diferentes formatos, según el valor que meta el usuario por parámetro:
+1.	17/02/2016
+2.	Miércoles, 17 de febrero de 2016.
+3.	Wednesday, February 17, 2016.
+   */
+
+    
+    var opcion = prompt("Formato para ver la fecha actual: \n1.	17/02/2016 \n2.	Miércoles, 17 de febrero de 2016. \n3.	Wednesday, February 17, 2016.\n Introduce la opcion del menú: ");
+    fecha= new Date();
+    
+    var diasSemana = ["Lunes", "Martes","Miércoles","Jueves","Viernes","Sabado","Domingo"];
+    var meses = ["Enero", "Febrero","Marzo","Mayo","Abril","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+
+    switch(opcion){
+        case "1": 
+            document.write(fecha.getDate()+ "/" + (fecha.getMonth()+1) + "/" + fecha.getFullYear());
+        break;
+        case "2":
+             //fecha.getDay() devuelve 1 si es Lunes
+             document.write(diasSemana[fecha.getDay()-1] + ", " + fecha.getDate() + " de " + meses[fecha.getMonth()] + " de " + fecha.getFullYear());
+        break;
+        case "3":
+        document.write(days[fecha.getDay()-1] + ", "+  months[fecha.getMonth()] + " " +  fecha.getDate() + ", " + fecha.getFullYear());
+        break;
+        default:
+            alert("No has introducido una opción del menú");
+    }
+
+
+    </script>
+</body>
+</html>

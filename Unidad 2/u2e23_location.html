@@ -9,8 +9,8 @@
 <body>
     <iframe name="frame1" width="800" height="600"></iframe>
     <br>
-    <input type="text" name="url">
-    <button name="b1" type="button" >Pulsa</button>
+    <input id="caja" type="text" name="url">
+    <button id="boton1" type="button">Actualizar</button>
     
     <script>
    /*
@@ -26,14 +26,20 @@ window.frames[0].window.location….
 
 
    */
-       document.getElementById("b1").addEventListener("click",cargarURL());
+      
+       document.getElementById("boton1").addEventListener("click",cargarURL);
 
 
 
         function cargarURL(){
-            window.open("https://www.educa.jcyl.es","frame1");
-            alert("Hola");
+            var url = document.getElementById("caja").value;
+            window.open(url,"frame1");
         }
+
+
+        //https://www.educa.jcyl.es
+
+        
   
     </script>
 </body>

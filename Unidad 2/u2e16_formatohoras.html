@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*
+Crea un programa que muestre la hora actual en diferentes formatos, según el valor que meta el usuario por parámetro:
+1.	14:35:07 (hora detallada con minutos y segundos)
+2.	02:35 PM o 02:35:07 AM (hora con minutos y AM o PM según sea antes o después del medio día).
+   */
+
+    
+    var opcion = prompt("Formato para ver la fecha actual: \n1 14:35:07 (hora detallada con minutos y segundos)\n2 02:35 PM o 02:35:07 AM (hora con minutos y AM o PM según sea antes o después del medio día).\n Introduce la opcion del menú: ");
+    var fecha= new Date();
+    var tiempo = fecha.getTime();
+
+
+    switch(opcion){
+        case "1": 
+            document.write(fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds() );
+        break;
+        case "2":
+             if(fecha.getHours() < 13){
+                document.write(fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds() + " AM");
+             }else{
+                document.write(fecha.getHours() + ":" + fecha.getMinutes() + " PM");
+             }
+            
+        break;
+        default:
+            alert("No has introducido una opción del menú");
+    }
+
+
+    </script>
+</body>
+</html>

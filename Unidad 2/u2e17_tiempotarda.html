@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   /*
+Utiliza las dos formas de calcular la serie de Fibonacci,
+ que has definido en los ejercicios anteriores. Calcula y muestra el tiempo que tarda una y otra.
+   */
+
+        var TIFIter;
+        var TFFIter;
+
+        var TIFRecur;
+        var TFFRecur;
+
+
+
+        var n=26;
+    
+        TIFRecur = new Date().getTime();
+        fiboRec(n);
+        TFFRecur = new Date().getTime();
+        
+        TIFIter = new Date().getTime();
+        fiboIter(n);
+        TFFIter = new Date().getTime();
+
+        document.write("El programa tarda en hallar Fibonacci recursivo " + (TFFRecur-TIFRecur) + ", Fibonacci iterativo " + (TFFIter-TIFIter) );
+
+
+
+        function fiboRec(n){
+            if(n==1){
+                return 0;
+            }
+            if(n==2){
+                return 1;
+            }
+
+           return fiboRec(n-1) + fiboRec(n-2); 
+        }
+
+       
+
+        
+        //Función que calcula la serie de fibonacci hasta un número dado iterativamente
+        function fiboIter(n){
+            var nFib=1;
+            var v2=1;
+            var v1=0;
+            for(var i=0;i<n;i++){
+                if(i==0){
+                    nFib=0;
+                }
+                if(i==1){
+                    nFib=1;
+                }
+                if(i>1){
+                    nFib= v1+v2;
+                   
+                    v1=v2;
+                    v2=nFib;  
+                }
+                
+                //document.write(nFib + " ");
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+   Crea un objeto llamado coche que tenga algunas características como el color, marca, modelo y
+    si está encendido o apagado. Además, tendrá un método que modifique este último valor 
+    y que permita arrancar o apagar el coche.
+*/
+        
+
+        function Coche(col,mar,model,es){
+            this.color=col;
+            this.marca=mar;
+            this.modelo=model;
+            this.estado=es;
+           
+
+            this.arrancar = function(){
+                this.estado = true;
+                document.write("<br>Coche arrancado<br>");
+            }    
+
+            this.apagar = function(){
+                this.estado = false;
+                document.write("<br>Coche apagado<br>");
+            } 
+
+           
+        }
+
+        var coche1= new Coche("Rojo","Bmw","X6",false);
+
+        //document.write(coche1.estado);
+        document.write("El coche está " + (coche1.estado? "encendido":"apagado" ));
+
+        coche1.arrancar();
+
+        document.write("El coche está " + (coche1.estado? "encendido":"apagado" ));
+
+        coche1.apagar();
+
+        document.write("El coche está " + (coche1.estado? "encendido":"apagado" ));
+
+
+
+    </script>
+</body>
+</html>

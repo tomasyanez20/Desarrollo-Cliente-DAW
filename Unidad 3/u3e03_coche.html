@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+   Crea una clase Coche, que permita crear objetos como los del ejercicio anterior.
+Utiliza todos los modos que conozcas para crear esa clase.
+
+*/
+        
+        //MODO 1
+        function Coche(col,mar,model,es){
+            this.color=col;
+            this.marca=mar;
+            this.modelo=model;
+            this.estado=es;
+           
+
+            this.arrancar = function(){
+                this.estado = true;
+                document.write("<br>Coche arrancado<br>");
+            }    
+
+            this.apagar = function(){
+                this.estado = false;
+                document.write("<br>Coche apagado<br>");
+            } 
+
+           
+        }
+
+        var coche1= new Coche("Rojo","Bmw","X6",false);
+
+        //MODO 2
+
+        var coche2 = new Object();
+        coche2.color="rojo";
+        coche2.marca="Ferrari";
+        coche2.modelo="Testarrosa";
+        coche2.estado=false;
+        coche2.arrancar= function(){
+            this.estado = true;
+                document.write("<br>Coche arrancado<br>");
+        }
+        coche2.apagar= function(){
+                this.estado = false;
+                document.write("<br>Coche apagado<br>");
+        } 
+
+        //document.write("El modelo del coche es " + coche2["modelo"]);
+        //coche2.apagar();
+        
+
+        
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+   // Escribe un programa que cree un objeto "cuenta" con las siguientes propiedades:
+•	Una propiedad titular con el valor "Alex".
+•	Una propiedad saldo, teniendo como valor inicial 0.
+•	Un método ingresar() que permita añadir dinero a la cuenta, pasando la cantidad como parámetro
+•	Un método extraer() que permita retirar la cantidad pasada como parámetro.
+•	Un método informar() que retorne la información del estado de la cuenta. 
+*/
+        
+
+        function Cuenta(tit,sal){
+            this.titular=tit;
+            this.salario=sal;
+
+            this.ingresar = function(cantidad){
+                this.salario = this.salario + cantidad;
+            }    
+
+            this.extraer = function(cantidad){
+                this.salario = this.salario - cantidad;
+            } 
+
+            this.informar =  function(){
+                document.write("Información de la cuenta: <br>" );
+                document.write("Titular: " + this.titular + "<br> Salario: " + this.salario + "<br>");
+            } 
+        }
+
+        var cuenta1 = new Cuenta("Alex",0);
+
+        document.write("Inicialmente: <br>" );
+        cuenta1.informar();
+
+        cuenta1.ingresar(110);
+        document.write("Ingresar: <br>" );
+        cuenta1.informar();
+
+        cuenta1.extraer(60);
+        document.write("Retirar: <br>" );
+        cuenta1.informar();
+
+
+
+    </script>
+</body>
+</html>

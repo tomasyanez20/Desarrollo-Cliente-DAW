@@ -37,12 +37,17 @@ o	Terminar
 */
         
         //Costructor 1 con parámetros
+        //function Disco(nom="",grup="",anio="",tipo="",localiza=0){ 
+            //Para usar un constructor sin parametros
         function Disco(nom,grup,anio,tipo,localiza){
-            this.nombre=nom;
-            this.grupo=grup;
-            this.anio=anio;
-            this.tipo=tipo;
-            this.localizacion= localiza;
+
+            this.nombre=nom || "";
+            // if (nom== undefined) this.nombre = "";
+            // this.nombre = (nom== undefined)? "": nom;
+            this.grupo=grup || "";
+            this.anio=anio || "";
+            this.tipo=tipo || "";
+            this.localizacion= localiza || 0;
             this.prestado= false; 
             
             this.cambiarEstan = function(){
@@ -90,25 +95,13 @@ o	Terminar
             this.localizacion= 0;
             this.prestado= false;  
 
-            this.cambiarEstan = function(numero){
-                this.localizacion= numero;
-            }
-
-            this.cambiarPrest = function(){
-                this.localizacion= numero;
-            }
-
-            this.muestraInfo = function(){
-                document.write("<br> Información del disco:<br>Nombre: " + this.nombre +
-                 "<br>Grupo: " + this.grupo + "<br>Año: " + this.anio + "<br>Tipo: " + this.tipo 
-                 + "<br>Localización: " + this.localizacion + "<br>Prestado: " + this.prestado );
-            }
-
+            
         }
         */
         //Creará un objeto de tipo disco, para lo cual te pide los parámetros.
 
         var d1 = new Disco("Top 100","Elvis",1992,"rock",4,true);
+       // var d1 = new Disco();
         var salir=false;
         var opcion;
 

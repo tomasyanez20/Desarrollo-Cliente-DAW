@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+Crea una clase Vector que representa un vector. Al crearlo, se pasarán como parámetros dos valores numéricos que serán la x (distancia al punto 0,0 en el eje de las x), 
+y la y ((distancia al punto 0,0 en el eje de las y).
+
+Esta clase tendrá dos métodos: sumar y restar, que toma otro vector como parámetro, y devuelve un nuevo vector que toma la suma o
+ diferencia de los valores x e y de los dos vectores (el this y el parámetro).
+
+Además, tendrá una propiedad longitud, que devuelve la longitud del vector, esto es, la distancia desde el origen (0,0) al punto (x, y).
+ Para calcular esta distancia, puedes utilizar el teorema de Pitágoras: la longitud de la hipotenusa de un triángulo será rectángulo es la 
+ raíz cuadrada de la suma del cuadrado de los dos catetos del triángulo.
+
+console.log(new Vector(1, 2).sumar(new Vector(2, 3)));
+// → Vector{x: 3, y: 5}
+console.log(new Vector(1, 2).restar(new Vector(2, 3)));
+// → Vector{x: -1, y: -1}
+console.log(new Vector(3, 4).longitud);
+// → 5
+//
+
+
+*/
+        
+        //Costructor 1 con parámetros
+        function Vector(x,y){
+            this.x=x;
+            this.y=y;
+
+            this.sumar = function(Vector){
+                var xs= this.x + Vector.x;
+                var ys= this.y + Vector.y;
+                return "x: "+ xs + ", y: " + ys;
+            }
+
+            this.restar = function(Vector){
+                var xr= this.x - Vector.x;
+                var yr= this.y - Vector.y;
+                return "x: "+ xr + ", y: " + yr;
+            }
+
+            this.longitud = function(){
+                var l = Math.sqrt((this.x*this.x) + (this.y*this.y))
+                return l;
+            }
+        }
+
+
+
+
+        var vector1 = new Vector(1,2);
+
+        console.log(vector1.sumar(new Vector(2,3)));
+        console.log(vector1.restar(new Vector(2,3)));
+        console.log(vector1.longitud());
+
+      
+
+    </script>
+</body>
+</html>

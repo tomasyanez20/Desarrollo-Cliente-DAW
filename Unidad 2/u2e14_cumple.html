@@ -24,34 +24,30 @@ Además, que saque todos los años en que tu cumpleaños va a caer en domingo, d
     var dia = 3;
     var mes = 7;
     
-    
+    var hoy = new Date();
+    var anio1=0;
 
-    //var mesActual = d.getMonth()+1;
-   // var diaActual = d.getDay();
-
-    //var diferenciaMes=0;
-
-
-/*
-    if(mesActual < mes){    //si el mes actual es mayor que el mes de la fecha de cumpleaños
-        diferenciaMes = mes - mesActual;
-    }else if(mesActual > mes){
-        var mesA12;
-        mesA12 = 12- mesActual;
-        diferenciaMes = mesA12+ mes;
+    if(mes>=hoy.getMonth()){     //si el mes del cumple es mayor al mes actual
+        anio1= hoy.getFullYear();   //el año es el actual
+    }else{
+        anio= hoy.getFullYear+1; //si el mes es menor es que el año es el siguiente
     }
-*/
 
+    var proximoCumple= new Date(anio1,mes,dia);
+    //alert("cumple" + cumple);
 
-    document.write("Dia actual: " +  new Date().getDay() ) ;
+    console.log(
+    "Milisegundos hasta tu proximo cumpleaños: " + (proximoCumple - Date.now()) + "\n" +
+    "Dias hasta tu proximo cumpleaños: " + Math.trunc((proximoCumple - Date.now()) / (1000 * 60 * 60 * 24))
+    );
 
-    document.write("<br> Meses hasta la fecha de cumple " + diferenciaMes ) ; 
-
-   
-    //var fechaCumnple = new Date(fechaActual.getYear(),9,10);
-
-
-   // document.write("<br>Quedan  " + diferencia/1000/60/60/24 + " dias");// + " el año de la fecha de fin es " + annoHoy );
+    var salida = "";
+    for (let i = hoy.getFullYear(); i < 2100; i++) {
+        if (new Date(i, mes, dia).getDay() == 0) {
+            salida += "En el año " + i + ".Tu cumpleaños cae en Domingo\n";
+        }
+}
+console.log(salida);
 
 
 

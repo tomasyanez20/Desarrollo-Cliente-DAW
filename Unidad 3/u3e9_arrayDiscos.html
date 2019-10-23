@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+Haz un programa que gestione una lista de discos, utilizando las funciones 
+para manejar el objeto de tipo disco que has creado en el primer ejercicio.
+
+Crea un array vacío para almacenar los discos.
+Cuando el usuario cargue la página, se mostrarán las opciones:
+	Mostrar número de discos.
+	Mostrar listado de discos (y le preguntará si quiere mostrarlos en el orden que se encuentran en el array, del revés u ordenados alfabéticamente).
+	Mostrar un intervalo de discos (y le pedirá que introduzca el intervalo en formato inicio-fin; luego deberás extraer el valor inicio y fin).
+	Añadir un disco (y le preguntará si quiere añadir al principio o al final).
+	Borrar un disco (y le preguntará si quiere borrar al principio o al final).
+	Consultar un disco (y le preguntará si quiere consultar por posición o por nombre).
+	Todas las operaciones que se realicen se irán mostrando en la página con su título
+*/
+        
+        //Costructor 1 con parámetros
+        //function Disco(nom="",grup="",anio="",tipo="",localiza=0){ 
+            //Para usar un constructor sin parametros
+            function Disco(nom,grup,anio,tipo,localiza){
+
+                this.nombre=nom || "";
+                // if (nom== undefined) this.nombre = "";
+                // this.nombre = (nom== undefined)? "": nom;
+                this.grupo=grup || "";
+                this.anio=anio || "";
+                this.tipo=tipo || "";
+                this.localizacion= localiza || 0;
+                this.prestado= false; 
+
+                this.cambiarEstan = function(){
+                    numero= prompt("Introduce el nuevo número de estantería: ");
+                    this.localizacion= numero;
+                }
+
+                this.devolver = function(devolver){
+
+                    if(devolver==true){ //devolver un disco
+                        if( this.prestado == false){ //si el disco esta en la biblioteca no se puede devolver
+                            alert("El disco se encuentra ya en la biblioteca"); 
+                        }else{  //si prestado es true si se devuelve
+                            this.prestado = false;//el disco pasa a no estar prestado
+                            alert("Disco devuelto");
+                        }
+
+                    }else{//no devolver un disco, prestarlo
+                        if( this.prestado == true){ //si el disco ya se ha prestado no se puede volver a prestar
+                            alert("El disco el disco ya se había prestado"); 
+                        }else{
+                            this.prestado = true;
+                            alert("Disco prestado ");
+                        }
+                    }
+
+                }
+
+                this.muestraInfo = function(){
+                    alert("Información del disco: \n Nombre: " + this.nombre +
+                    "\nGrupo: " + this.grupo + "\nAño: " + this.anio + "\nTipo: " + this.tipo 
+                    + "\nLocalización: " + this.localizacion + "\nPrestado: " + this.prestado );
+                }
+            }
+        
+    opcion=prompt("1.Mostrar número de discos\n" + "2.Mostrar listado de discos (y le preguntará si quiere mostrarlos en el orden"+
+    " que se encuentran en el array, del revés u ordenados alfabéticamente).\n" +
+	"3.Mostrar un intervalo de discos (y le pedirá que introduzca el intervalo en formato inicio-fin;"
+     +"luego deberás extraer el valor inicio y fin)\n"
+	+"4.Añadir un disco (y le preguntará si quiere añadir al principio o al final).\n"
+	+"5.Borrar un disco (y le preguntará si quiere borrar al principio o al final).\n"
+	+"6.Consultar un disco (y le preguntará si quiere consultar por posición o por nombre).\n"
+	+"7.Todas las operaciones que se realicen se irán mostrando en la página con su título);\n"
+    + "Introduce una opción del menú:\n");
+
+
+
+    switch(opcion){
+                case "1":
+   
+                    break;
+                case "2":
+                    d1.cambiarEstan();
+                    break;
+                case "3":
+                    d1.devolver(false);
+                    break;
+                case "4":
+                    d1.devolver(true);
+                    break;
+                case "5":
+                    salir=true;
+                    break;
+                default: 
+                    alert("No has introducido ninguna opción del menú");
+            }
+
+        var vectorDiscos[];
+
+
+        function anadirDisco(disco){
+            var o="";
+            o=prompt("¿Añadir al principio o al final? introduce (principio/final)");
+            if(o=="principio"){
+
+                alert("<br>Disco insertado al inicio");
+            }else if(o=="final"){
+
+                alert("<br>Disco insertado al final");
+            }else{
+                alert("<br>No has introducido ninguna opción ");
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+       
+        function imprimir(vector){
+            document.write("<br>");
+            for(var i=0;i<vector.length;i++){    
+                    document.write(vector[i] + " ") ;
+            }
+            document.write("<br>");
+        }
+
+
+
+    </script>
+</body>
+</html>

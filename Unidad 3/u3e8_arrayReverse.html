@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+Los arrays tienen un método reverse(), que cambia el array invirtiendo el orden en el que aparecen los elementos.
+Para este ejercicio, escribe dos funciones, reverseArray() y reverseArray2(). La primera, toma como argumento un array, 
+y devuelve un nuevo array que tenga los mismos elementos en orden inverso.
+La segunda, modifica el array que se ha pasado como argumento.
+No se puede utilizar el método reverse().
+
+
+*/
+        var vector= [19,3,6,2,90,1,50];
+        var vector2=[];
+        var vector3=[];
+
+        vector2=reverseArray(vector);
+
+
+        document.write("<br>Vector original: ");
+        imprimir(vector);
+        document.write("<br>Vector Reverso 1: ");
+        imprimir(vector2);
+
+
+        vector3=reverseArray2(vector);
+        document.write("<br>Vector Reverso 2: ");
+        imprimir(vector3);
+        
+
+        function reverseArray(vector){
+            var vector1=[];
+            var cont=0;
+            for(var i=vector.length-1;i>=0;i--){
+                vector2[i]=vector[cont];
+                cont++;
+            }
+            return vector2;
+        }
+
+        function reverseArray2(vector11){
+            var cont = 0;
+            var aux;
+            for(var i=vector11.length-1;i>=0;i--){
+                if(cont<i){
+                    aux = vector11[cont];
+                   // document.write(vector11[cont] + "Vector 0 : " + vector11[i] + "fin ---<br>");
+                    vector11[cont]=vector11[i];
+                    vector11[i]=aux;
+                    cont++;
+                }
+            }
+            return vector11;
+        }
+
+
+       
+        function imprimir(vector){
+            document.write("<br>");
+            for(var i=0;i<vector.length;i++){    
+                    document.write(vector[i] + " ") ;
+            }
+            document.write("<br>");
+        }
+
+
+
+    </script>
+</body>
+</html>

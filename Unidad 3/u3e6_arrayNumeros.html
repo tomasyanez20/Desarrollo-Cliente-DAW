@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+Crea un array, cuyo contenido son números.
+•	Haz una función que muestre en la página los números pares que hay en el array, utilizando un for, y utilizando forEach().
+•	Haz una función que muestre en la página el resultado de sumar todos los elementos del array.
+•	Haz una función que elimine el último elemento del array, y añada otro elegido por el usuario.
+•	Haz una función que muestre el valor máximo que hay en el array.
+
+
+*/
+        var vector= [1,3,6,2,90,1];
+
+        mostrarPar();
+        suma();
+        document.write("<br>Vector original: ");
+        imprimir(vector);
+        eliminarUltimo();
+        document.write("<br>Vector con el último cambiado: ");
+        imprimir(vector);
+        maximo();
+
+
+
+        function mostrarPar(){
+            document.write("Los números pares son: ");
+            for(var i=0;i<vector.length;i++){
+                if(vector[i]%2==0){
+                    document.write(vector[i] + " ") ;
+                }
+            }
+
+            document.write("<br> For Each: ");
+            vector.forEach(function(elemento) {
+                if(elemento%2==0){
+                    document.write(elemento + " ") ;
+                }
+            });
+        }
+
+        function suma(){
+            document.write("La suma de todos los elementos es: ");
+            var suma=0;
+            for(var i=0;i<vector.length;i++){
+                suma += vector[i];
+            }
+            document.write(suma);
+        }
+
+
+        function eliminarUltimo(){
+            var n=prompt("Introduce un número:")
+            vector[vector.length-1]=n;
+        }
+
+        function maximo(){
+            document.write("<br>");
+            var max=0;
+            for(var i=0;i<vector.length;i++){    
+                    if(vector[i]>max){
+                        max= vector[i];
+                    }
+            }
+            document.write("El máximo es " + max + "  <br>");
+        }
+
+
+
+
+        function imprimir(vector){
+            document.write("<br>");
+            for(var i=0;i<vector.length;i++){    
+                    document.write(vector[i] + " ") ;
+            }
+            document.write("<br>");
+        }
+
+
+
+    </script>
+</body>
+</html>

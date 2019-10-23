@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+Crea un programa con las siguientes funciones, y muestra su funcionamiento con ejemplos:
+•	Crea una función rango, que toma dos argumentos, inicio y fin, y devuelve un array
+ que contiene todos los números desde inicio hasta fin (ambos incluidos).
+•	Escribe una función suma, que recibe como parámetro un array de números y devuelve la suma de estos números.
+•	Crea una nueva función rango2, a partir de la función rango, con un tercer argumento opcional
+ que indica el “paso” (step) utilizado para construir el array. Si no se da este argumento, los
+  elementos se incrementas de uno en uno.
+Por ejemplo, rango2(1, 10, 2) devolverá [1, 3, 5, 7, 9].
+También deberá funcionar  con números negativos. Por ejemplo, rango2(5, 2, -1) devolverá [5, 4, 3, 2].
+
+*/
+        var vector= [1,3,6,2,90,1];
+        var vector2=[];
+        var vector3=[];
+        document.write("<br>Vector original: ");
+        imprimir(vector);
+        rango(2,5)
+        document.write("<br>Vector Rango: ");
+        imprimir(vector2);
+        document.write("<br> La suma de todos los elementos es: " + suma(vector));
+        rango2(1,4,-2);
+        imprimir(vector3);
+        rango2(2,5);
+        imprimir(vector3);
+
+
+
+        function rango(ini,fin){
+            document.write("Rango2 : " +  ini + " - " + fin );
+            cont=0;
+            for(var i=ini-1;i<fin;i++){
+                vector2[cont]=vector[i];
+                cont++;
+            }
+         
+        }
+
+        function rango2(ini,fin,inc){
+           
+            cont=0;
+            if(inc==undefined){
+              inc=1;
+            }
+            document.write("<br>Rango2 : " +  ini + " - " + fin + " incremento " + inc );
+            for(var i=ini-1;i<fin;i++){
+                vector3[cont]=vector[i];  
+                vector3[cont] = vector3[cont] +inc;
+                cont++;
+            }
+         
+        }
+
+
+
+        function suma(vector){
+            var suma=0;
+            for(var i=0;i<vector.length;i++){
+                suma += vector[i];
+            }
+            return suma;
+        }
+
+      
+
+
+       
+        function imprimir(vector){
+            document.write("<br>");
+            for(var i=0;i<vector.length;i++){    
+                    document.write(vector[i] + " ") ;
+            }
+            document.write("<br>");
+        }
+
+
+
+    </script>
+</body>
+</html>

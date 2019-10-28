@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+Crea una función para comprobar si un DNI o NIE es correcto, es decir, que contiene 8 dígitos y una letra,
+ y que la letra es correcta.
+En el caso del DNI:
+	Se toma el nº del DNI
+	Se divide por 23.
+	Cogemos el resto (tiene que ser un número comprendido entre el 0 y el 22)
+	A cada número entre el 0 y el 22 le corresponde una letra de acuerdo con la tabla de asignación de abajo:
+
+*/
+
+   var dni = "56221526G"; 
+  //var dni = "00221x5261"; 
+
+  var nie = "Y6478436V"; 
+  var nieBien=true;
+ 
+
+    if(dniBienFormado(dni)==true){
+      document.write("<br>Dni "+ dni + " bien formado");
+    }else{
+      document.write("<br>Dni "+ dni + " mal formado");
+    }
+
+
+    function dniBienFormado(dni){
+        var nieBien=true;
+        var numero = dni.substr(0,8);
+        var l= dni.charAt((dni.length)-1);
+        var expr = /^[a-zA-Z]+$/;
+        
+          if(isNaN(numero)){
+            document.write("<br>Error, los 8 primeros dígitos tienen que ser números<br>");
+            dniBien=false;
+          }
+          if(!l.match(expr)){
+            document.write("<br>Error, el último carácter debe de ser letra<br>");
+            dniBien=false;
+          }
+          if(dni.length != 9){
+            document.write("<br>Error, el tamaño de la cadena debe de ser 9 caracteres<br>");
+            dniBien=false;
+          }
+
+        var letras = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'];
+
+        var resto = numero%23;
+        //Asignar la letra que le corresponde
+        var letra=letras[resto];
+        
+        if(l!=letra){
+            document.write("Error, las letras no coinciden");
+            dniBien=false;
+          }
+          return nieBien;
+    }
+
+    var nieCompleto="";
+    var nieDni= nie.substr(1,8);
+    //alert(nie.charAt(0));
+    if(nie.charAt(0)=='X' || nie.charAt(0)=='Y' || nie.charAt(0)=='Z'){
+      
+      if(nie.charAt(0)=='X'){
+        nieCompleto+="0";
+      }
+      if(nie.charAt(0)=='Y'){
+        nieCompleto+="1";
+      }
+      if(nie.charAt(0)=='Z'){
+        nieCompleto+="2";
+      }
+      nieCompleto+= nieDni;
+      if(!dniBienFormado(nieCompleto)){
+        nieBien=false;
+      }
+
+    }else{
+      document.write("<br>Error, la primera letra debe de ser X, o Y, o Z");
+      nieBien=false;
+    }
+
+    if(nieBien==true){
+      document.write("<br>Nie "+ nie + " bien formado");
+    }else{
+      document.write("<br>Nie "+ nie + " mal formado");
+    }
+
+
+    
+
+    </script>
+</body>
+</html>

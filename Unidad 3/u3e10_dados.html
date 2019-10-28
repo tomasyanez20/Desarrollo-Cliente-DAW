@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+Escribir un script que simule el lanzamiento de dos dados. Hacer uso de la función Math.random
+ para obtener números aleatorios entre 1 y 6 para cada uno de los lanzamientos de los dados.
+  Sumar el resultado de lanzar dos dados y
+ anotar en un array el número de apariciones de dicha suma, repitiendo 36.000 veces esta operación.
+*/
+
+  var array=[];
+  //var result= new Array(13); //resultado [suma] +1
+ // result.fill(0);
+
+   var result=[0,0,0,0,0,0,0,0,0,0,0];
+
+    
+
+  for(var i=0;i<36000;i++){
+    var dado1=Math.floor(Math.random()*6)+1;
+    var dado2=Math.floor(Math.random()*6)+1;
+    var suma = dado1+dado2;
+    result[suma-2]= result[suma-2] + 1; //hay que restarle 2 para que empieze en 2, result[2]=...
+  }     
+
+  imprimir(result);
+
+  function imprimir(vector){
+            document.write("<br>");
+            for(var i=0;i<vector.length;i++){    
+                    document.write(vector[i] + " ") ;
+            }
+            document.write("<br>");
+        }
+
+
+    </script>
+</body>
+</html>

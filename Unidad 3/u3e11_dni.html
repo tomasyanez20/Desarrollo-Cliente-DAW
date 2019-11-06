@@ -37,7 +37,8 @@ En el caso del DNI:
         var nieBien=true;
         var numero = dni.substr(0,8);
         var l= dni.charAt((dni.length)-1);
-        var expr = /^[a-zA-Z]+$/;
+        var expr = /^[a-zA-Z]$/;
+        var expr8dig = /^[0-9]{8}[a-zA-Z]$/
         
           if(isNaN(numero)){
             document.write("<br>Error, los 8 primeros dígitos tienen que ser números<br>");

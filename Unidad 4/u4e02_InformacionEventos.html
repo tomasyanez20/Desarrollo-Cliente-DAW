@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Ejercicio tomado de https://www.arkaitzgarro.com/javascript/snippets/cap18/ej18.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eventos - Información eventos ratón y teclado</title>
+</head>
+
+<body>
+    <div id="raton" class="box">
+        <h1>Ratón</h1>
+        <div></div>
+    </div>
+    <div id="teclado" class="box">
+        <h1>Teclado</h1>
+        <div></div>
+    </div>
+    <script>
+        document.addEventListener("mousemove",muestrainformacion);
+        document.addEventListener("keypress",muestrainformacion);
+
+        function muestraInformacion(evento) {
+            switch(evento.type){
+                case "mousemove":
+                break;
+                case: "keypress":
+                break;
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

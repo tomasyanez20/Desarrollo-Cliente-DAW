@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Formulario discos </title>
+    <style>
+        div{
+            margin: 25px 0px 25px 0px;
+        }
+
+        label{
+            display:block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--EJERCICIO: u5e05_formulario
+Prepara un formulario diseñado para almacenar los discos con los que trabajamos en el ejercicio u4e01_discos. Recuerda qué elementos se almacenaban, y elije el componente de formulario más adecuado:
+•	Nombre del disco.
+•	Grupo de música o cantante.
+•	Año de publicación.
+•	Tipo de música (podrá ser “rock”, “pop”, “punk” o “indie”);
+•	Localización: almacenará un número de estantería.
+•	Prestado: almacenará un valor booleano. Por defecto será false.
+Realiza las funciones necesarias para validarlo con JavaScript teniendo en cuenta: 
+•	Nombre del disco: 20 caracteres, obligatorio.
+•	Grupo de música o cantante: 20 caracteres, obligatorio.
+•	Año de publicación: 4 caracteres numéricos.
+•	Tipo de música (podrá ser “rock”, “pop”, “punk” o “indie”): sin comprobación. //
+•	Localización: almacenará un número de estantería: vacío o numérico. /s[0-9]
+•	Prestado: sin comprobación.
+Tendrás que tener en cuenta, además: 
+•	Que utilizarás un método window.onload.
+•	Que la validación se asignará al formulario mediante un AddEventListener.
+•	Que los campos nombre del disco y grupo de música se validarán en la misma función (campo20).
+    Ampliación: 
+•	Modifica las funciones de tal manera que, en caso de que se produzca un error en la validación, el campo implicado tenga el reborde rojo, y la etiqueta que lo acompaña también aparezca de color rojo.
+•	Para ello deberás crear las clases css necesarias (puedes incluirlas en el propio html si lo deseas) para que se visualice correctamente. 
+•	Ten en cuenta que si el usuario mete correctamente el nombre, deberá volver a su color habitual.
+-->
+
+    <script>
+        
+    </script>
+
+    <form action="" method="POST" id=form1>
+        <fieldset>
+            <legend>Introducir información de disco</legend>
+            <div>
+                <label>Nombre de disco</label>
+                <input type="text" name="nombre" id="nom">
+            </div>
+            <div>
+                <label>Grupo</label>
+                <input type="text" name="grupo" id="gr">
+            </div>
+            <div>
+                <label>Año de publicación</label>
+                <input type="number" name="anio" min=0 id="an" >
+            </div>
+            <div>
+                <label>Tipo</label><br>
+                <input type="radio" name="tipo">Rock <br>
+                <input type="radio" name="tipo">Pop <br>
+                <input type="radio" name="tipo">Punk <br>
+                <input type="radio" name="tipo">Indie <br>
+            </div>
+            <div>
+                <label>Localización</label>
+                <input type="text" name="localizacion">
+            </div>
+            <div>
+                <label>Prestado</label>
+                <input type="radio" name="presta" value="si">Sí
+                <input type="radio" name="presta" value="no">No<br>
+            </div>
+
+            <input type="submit" value="Enviar" id="enviar">
+            <input type="reset" value="Borrar">
+        </fieldset>
+    </form>
+
+    <script>
+
+        window.onload = iniciar;
+
+    function iniciar() {
+        document.getElementById("enviar").addEventListener('click', validar);
+    }
+
+    function validarCampo20(){
+        var n = document.getElementById("nom"); 
+        var g = document.getElementById("gr"); 
+
+
+        if(n.value.length !=20  || n.value==" "){
+            alert("El nombre debe de tener 20 caracteres")
+            return false;
+        }
+
+        if(g.value.length !=20  || g.value==" "){
+            alert("El nombre debe de tener 20 caracteres")
+            return false;
+        }
+
+        return true;
+    }
+
+        function validar(e) {
+            if (validarNombre()) {
+                return true;
+            } else {
+                e.preventDefault(); //impide realizar la función
+            }
+            return false;
+        }
+
+/*
+        if(a.value  || g.value==" "){
+            alert("El Año debe de tener 4 digitos")
+            return false;
+        }
+
+
+*/
+    }
+
+
+
+
+    </script>
+
+</body>
+
+</html>

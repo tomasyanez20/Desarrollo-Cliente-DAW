@@ -7,29 +7,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Eventos - Información eventos ratón y teclado</title>
+    <style>
+        .box{
+            border: 2px solid black;
+            width: 300px;
+            height: 300px;
+            margin:10px;
+            float:left;
+			padding:5px;
+        }
+    </style>
 </head>
 
 <body>
     <div id="raton" class="box">
         <h1>Ratón</h1>
-        <div></div>
+        <div id="divRaton"></div>
+		<div id="divRaton2"></div>
     </div>
     <div id="teclado" class="box">
         <h1>Teclado</h1>
-        <div></div>
+        <div id="divTeclado"></div>
     </div>
     <script>
-        document.addEventListener("mousemove",muestrainformacion);
-        document.addEventListener("keypress",muestrainformacion);
-
-        function muestraInformacion(evento) {
-            switch(evento.type){
-                case "mousemove":
-                break;
-                case: "keypress":
-                break;
-            }
+      
+      
+        document.addEventListener("mousemove",muestraCoordenada);
+		document.addEventListener("mousemove",muestraCoordenada2);
+		document.addEventListener("mousemove",colorea1);
+		
+		
+        
+        function muestraCoordenada(e){ 
+            document.getElementById("divRaton").innerHTML= "Navegador [" + e.clientX + "," + e.clientY + "]" ;
         }
+		
+		function muestraCoordenada2(e){ 
+			document.getElementById("divRaton2").innerHTML= "Pagina [" + e.screenX + "," + e.screenY + "]" ;
+           // "X coords: " + x + ", Y coords: " + y;
+
+        }
+		
+
+		function colorea1(){
+		 document.getElementById("raton").style.backgroundColor="#FFFFCC";    
+		}
+
+        document.addEventListener("keydown", presionaTecla);
+		document.addEventListener("keydown",colorea);
+		
+        function presionaTecla(e){
+            document.getElementById("divTeclado").innerHTML= 
+                "carácter= [" + e.key + "]<br> " +
+                "Código= [" + e.keyCode + "]";
+
+               
+        }
+		
+		function colorea(){
+		 document.getElementById("teclado").style.backgroundColor="blue";    
+		}
+
     </script>
 
 

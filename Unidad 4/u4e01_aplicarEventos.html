@@ -19,7 +19,7 @@
 			ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
 			posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.
 		</p>
-		<a href="https://www.arkaitzgarro.com/javascript/snippets/cap18/ej17.html#" onclick="muestraOculta('p1');return false">Ocultar contenidos</a>
+		<a id="a1" href="https://www.arkaitzgarro.com/javascript/snippets/cap18/ej17.html#" onclick="muestraOculta('p1','a1');return false">Ocultar contenidos</a>
 	</div>
 	<br>
 	<div>
@@ -31,7 +31,7 @@
 			ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
 			posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.
 		</p>
-		<a href="https://www.arkaitzgarro.com/javascript/snippets/cap18/ej17.html#" onclick="muestraOculta('p2');return false" >Ocultar contenidos</a>
+		<a id="a2" href="https://www.arkaitzgarro.com/javascript/snippets/cap18/ej17.html#" onclick="muestraOculta('p2','a2');return false" >Ocultar contenidos</a>
 	</div>
 	<br>
 	<div>
@@ -43,24 +43,23 @@
 			ut, rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio urna consequat arcu, at
 			posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque.
 		</p>
-		<a href="https://www.arkaitzgarro.com/javascript/snippets/cap18/ej17.html#" onclick="muestraOculta('p3');return false">Ocultar contenidos</a>
+		<a id="a3" href="https://www.arkaitzgarro.com/javascript/snippets/cap18/ej17.html#" onclick="muestraOculta('p3','a3');return false">Ocultar contenidos</a>
 	</div>
 	<script>
 		//ocultar el párrafo
-		function muestraOculta(id){
+		function muestraOculta(id,ida){
+			//alert("entramos en "+id+"\n"+document.getElementById(id).hidden);
 			//event.preventDefault(); //para que no se ejecute la accion por defecto de a de llevarte al enlace.;
 		//	alert(parrafo);
 			if(document.getElementById(id).hidden==false){
-				document.getElementById(id).hidden==true;
+				document.getElementById(id).hidden=true;
+				document.getElementById(ida).innerHTML= "Mostrar Contenido";
 			}else{
-				document.getElementById(id).hidden==false;
+				document.getElementById(id).hidden=false;
+				document.getElementById(ida).innerHTML= "Ocultar Contenido";
 			}
 
 		}
-
-
-
-
 
 
 	</script>

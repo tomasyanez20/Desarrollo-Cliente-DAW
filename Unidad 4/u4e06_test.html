@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cuestionario</title>
+    <style>
+        .pregunta{
+            border: 2px solid black;
+            margin: 25px 0px 25px 0px;
+        }
+
+        #resp{
+            margin-left: 20px;
+        }
+
+        label{
+            display:block;
+            margin-bottom: 5px;
+        }
+		#resultado{
+			border: 2px solid black;
+			width: 200px;
+			height:100px;
+		}
+		
+		
+		
+		
+		
+    </style>
+</head>
+
+<body>
+    <!--Vas a crear un pequeño test sobre la serie de televisión que tú quieras. El test tendrá 10 preguntas con 3 respuestas cada una a elegir con radio buttons. 
+El programa deberá hacer lo siguiente:
+	Cuando el usuario conteste las 10 preguntas obtendrá el resultado final en un cuadro de texto.
+	Además, el usuario podrá ver qué preguntas ha fallado, porque al enviar el formulario le aparecerá un pequeño icono con un tick verde en las preguntas correctas y una cruz roja en las preguntas incorrectas.
+	En caso de que el usuario deje alguna pregunta sin contestar, no mostrará el resultado e indicará con un mensaje "No has respondido a todas las preguntas". Y se marcará en color rojo la pregunta que no haya sido respondida.
+    
+-->
+
+    <script>
+        
+    </script>
+
+    <form action="" method="POST" id=form1>
+        <fieldset>
+            <legend>FUTURAMA</legend>
+            <div class="pregunta" id="div1">
+                <label>Nombre del personaje principal</label>
+                <div id="resp">
+                    <input type=radio name="pregunta1" id="p11" value="Fry">Fry <br>
+                    <input type=radio name="pregunta1" id="p12" value="Leela">Leela<span class="SpanImagen"></span> <br>
+                    <input type=radio name="pregunta1" id="p13" value="Bender">Bender<span class="SpanImagen"></span>
+                </div>
+            </div>
+            <div class="pregunta" id="div2">
+                <label>En qué empresa trabajan los personajes de la serie</label>
+                <div id="resp">
+                    <input type=radio name="pregunta2" id="p21" value="Fry">Pepsi<span class="SpanImagen"></span><br>
+                    <input type=radio name="pregunta2" id="p22" value="Planet Express">Planet Express <span class="SpanImagen"></span>  <br>
+                    <input type=radio name="pregunta2" id="p23" value="Bender">Correos<span class="SpanImagen"></span>
+                </div>
+            </div>
+            <div class="pregunta" id="div3">
+                <label>¿Cómo se llama el robot de la serie?</label>
+                <div id="resp">
+                    <input type=radio name="pregunta3" id="p31" value="Fry">Fry <span class="SpanImagen"></span><br>
+                    <input type=radio name="pregunta3" id="p32" value="Leela">Leela <span class="SpanImagen"></span><br>
+                    <input type=radio name="pregunta3" id="p33" value="Bender">Bender<span class="SpanImagen"></span> 
+                </div>
+            </div>
+            <div>
+                    <input type="submit" value="Pulsa" id="enviar">
+            </div>
+			<div id="resultado">
+				<p>Resupuestas correctas: <span id="correctas"></span> </p>
+				<p>Resupuestas incorrectas: <span id="incorrectas"></span> </p>
+			</div>
+        </fieldset>
+    </form>
+
+    
+    <script>
+
+        window.onload = iniciar;
+
+        var correctas=0;
+
+		function iniciar() {
+			//alert("incio");
+			document.getElementById("enviar").addEventListener('click', validar);	//el pulsar el botón recarga la página
+		}
+
+        function validar(e) {
+			e.preventDefault(); //Evita que el botón recargue la página
+			var nota1=0,nota2=0,nota3=0,suma=0;
+			var incorrecta=0;
+			
+			
+			//Si se han respondido todas las preguntas: 
+			if(comprobar("pregunta1")==true && comprobar("pregunta2")==true && comprobar("pregunta3")==true){
+				document.getElementById("div1").style.borderColor="black";
+				document.getElementById("div2").style.borderColor="black";
+				document.getElementById("div3").style.borderColor="black";
+			
+			
+				if( document.getElementById("p11").checked==true ){
+					nota1=1;
+				}else{
+					nota1=0
+				}
+			
+				if( document.getElementById("p22").checked==true ){
+					nota2=1;
+					
+				}else{
+					nota2=0
+				}
+				
+				if( document.getElementById("p33").checked==true ){
+					nota3=1;
+				}else{
+					nota3=0
+				}
+			
+				//alert(uno " + nota1 + "s " + nota2 +  " as" +  nota3);
+				suma= nota1 + nota2 + nota3;
+				incorrecta = 3 - suma;
+				document.getElementById("correctas").innerHTML= suma;
+				document.getElementById("incorrectas").innerHTML= incorrecta;
+				
+				//1 detectar que radio ha pulsado
+				
+				
+				/* //Para colorear el div si falla la pregunta o la acierta
+				colorear(nota1,"div1");
+				colorear(nota2,"div2");
+				colorear(nota3,"div3");
+				*/
+			}else{		
+				alert("Hay que contestar todas las preguntas del test");
+				
+				if(comprobar("pregunta1")==false){
+					document.getElementById("div1").style.borderColor="red";
+				}else{
+					document.getElementById("div1").style.borderColor="black";
+				}
+				if(comprobar("pregunta2")==false){
+					document.getElementById("div2").style.borderColor="red";
+				}else{
+					document.getElementById("div2").style.borderColor="black";
+				}
+				
+				if(comprobar("pregunta3")==false){
+					document.getElementById("div3").style.borderColor="red";
+				}else{
+					document.getElementById("div3").style.borderColor="black";
+				}
+			}	
+			
+            //document.getElementById("resultado").style.backgroundColor="red";
+			
+        }
+		
+		
+
+		function colorear(nota,div){
+				if(nota==1){
+					document.getElementById(div).style.borderColor="green";
+				}else{
+					document.getElementById(div).style.borderColor="red";
+				}
+		}
+
+
+
+		//para resetear los radios
+		function resetear(nombre){
+			var vectorRadios = document.getElementsByName(nombre);
+			for(var i=0; i< vectorRadios.length; i++){
+				vectorRadios[i].checked = false;
+			}
+			
+		}
+		
+		//para comprobar si se han respondido todas las preguntas
+		function comprobar(nombre){
+			var vectorRadios = document.getElementsByName(nombre);
+			var flag=false;
+			for(var i=0; i< vectorRadios.length; i++){
+				if(vectorRadios[i].checked == true){
+					flag=true;
+				}
+			}
+			return flag; //si es falsa es que no se ha respondido a ningún radio
+			
+		}
+    </script>
+
+</body>
+
+</html>

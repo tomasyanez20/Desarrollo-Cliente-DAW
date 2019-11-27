@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bolsa </title>
+    <style>
+        div{
+            margin: 25px 0px 25px 0px;
+        }
+
+        label{
+            display:block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Walter White y Jesse Pinkman tienen que controlar las bolsas de producto azul que cocinan para distribuir en Alburquerque.
+	Para ello tienen que crear un formulario que almacene la información de cada bolsa y validarlo teniendo en cuenta lo siguiente: 
+•	Fecha de creación: obligatorio y con formato dd/mm/aaaa.
+•	Cocinero: será un nombre en clave formado por dos letras en mayúscula, un símbolo y cuatro dígitos (ej. WW$1234)
+•	Destinatario: estará formado por dos o tres letras mayúsculas correspondientes al estado, un guión bajo, 
+	el nombre de la ciudad en minúsculas, dos puntos, y el código de distrito de 4 digitos (ej. NM_alburquerque:1234).
+•	Gramos: será un número del 100 al 5000.
+•	Composición: estará formado por una cantidad en gramos seguida de dos conjuntos de una o dos letras seguidas o no de un número. (ej. 200gC3OH7) 
+•	Número de cuenta de EEUU: supongamos que un número de cuenta estadounidense tiene el siguiente formato:
+o	Dos letras: suponemos que el valor de cada letra es del 1 al 26 (no hay ñ ni ll).
+o	Dos dígitos: debe corresponderse con la suma de la primera letra y la segunda: en caso de que sea menor que 10 se pone el 0 delante.
+o	Un guión.
+o	Doce dígitos de cuenta.
+o	Un guión.
+o	Dos dígitos de control: los dos primeros deben ser la suma de los 6 primeros dígitos de la cuenta dividido entre 6 y extrayendo solamente
+ su parte entera; y los dos últimos exactamente igual, pero con los 6 siguientes.
+o	Si el número está correcto se colocará en un campo de texto al lado del anterior, pero sin guiones: solamente los números y las letras.
+
+-->
+
+    <script>
+        
+    </script>
+
+    <form action="" method="POST" id=form1>
+        <fieldset>
+            <legend>Información de cada bolsa</legend>
+            <div>
+                <label>Fecha de creación</label>
+				<input type="text" name="fecha" id="fecha">
+                <!--<input type="date" name="fecha" id="fecha">-->
+            </div>
+            <div>
+                <label>Cocinero</label>
+                <input type="text" name="cocinero" id="cocinero">
+            </div>
+            <div>
+                <label>Destinatario</label>
+                <input type="text" name="destin" id="destinatario" >
+            </div>
+            <div>
+                <label>Gramos</label><br>
+                <input type="text" name="gramos" id="gramos" > <br>
+            </div>
+            <div>
+                <label>Composición</label>
+                <input type="text" name="compos" id="composicion" >
+            </div>
+            <div>
+                <label>Número de cuenta EEUU</label>
+                <input type="text" name="cuenta" id="cuenta">
+            </div>
+
+            <input type="submit" value="Enviar" id="enviar">
+            <!--<input type="reset" value="Borrar">-->
+        </fieldset>
+    </form>
+
+    <script>
+
+        window.onload = iniciar;
+
+    function iniciar() {
+        document.getElementById("enviar").addEventListener('click', validar);
+    }
+
+    function validar(e){
+		e.preventDefault();
+
+		
+		//dos letras en mayúscula, un símbolo y cuatro dígitos
+		var variableFecha= /^\d{2}\/\d{2}\/\d{4}/g;
+		
+		var variableCocin= /[A-Z]{2}[^\s\w\d]\d{4}/g;    //para negar en mayúscula   AS@1123  niega en un grupo[ ] caracteres letra espacio y digito [^\d\s\w]
+		
+		var variableDestino= /^[A-Z]{2,3}_[a-z]+:\d{4}/g; //NM_alburquerque:1234
+		
+		var variableGramos = /^([1-9][0-9][0-9])$|^([1-4][0-9][0-9][0-9])$|5000/g;
+		
+		//formado por una cantidad en gramos seguida de dos conjuntos de una o dos letras seguidas o no de un número
+		var variableComposicion = /^[0-9]*[g][a-zA-Z]{1,2}[0-9]?[a-zA-Z]{1,2}[0-9]?/g;       //200gC3OH7  ^[a-z]{1,2}[0-9]?\w{1,2}[0-9]?
+		
+		
+		validarCampo("fecha",variableFecha);
+		validarCampo("cocinero",variableCocin);
+		validarCampo("gramos",variableGramos);
+		validarCampo("composicion",variableComposicion);
+	
+    }
+
+	//Función que valida si el input esta vacio y esta bien formado segun la expresión regular.
+	function validarCampo(id,expresionReg){
+	
+			if( document.getElementById(id).value.length == 0){
+				alert("No has introducido ningun nombre de " + id);
+			}else{
+				if(expresionReg.test(document.getElementById(id).value)==false){
+					alert("El "  + id + " no tiene el nombre correctamente formado");
+					document.getElementById(id).style.borderColor = "red";
+				}else{
+					document.getElementById(id).style.borderColor = "black";
+				}
+			
+			}
+	}
+
+   
+
+
+
+
+    </script>
+
+</body>
+
+</html>

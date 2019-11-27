@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bolsa </title>
+    <style>
+        div{
+            margin: 25px 0px 25px 0px;
+        }
+
+        label{
+            display:block;
+            margin-bottom: 5px;
+        }
+        p{
+            border: 1px solid black;
+            width:10%;
+            display: inline;
+        }
+    </style>
+</head>
+
+<body><!--
+localStorage almacena la información de forma indefinida o hasta que
+ se decida limpiar los datos del navegador y sessionStorage almacena información
+ mientras la pestaña donde se esté utilizando siga abierta, una vez cerrada, la información se elimina.
+
+-->
+
+    <script>
+        
+    </script>
+
+    <form action="" method="POST" id=form1>
+        <fieldset>
+            <legend>Información de cada bolsa</legend>
+            <div>
+                <label>Fecha de creación</label>
+				<input type="text" name="fecha" id="fecha">
+                <!--<input type="date" name="fecha" id="fecha">-->
+            </div>
+            <div>
+                <label>Cocinero</label>
+                <input type="text" name="cocinero" id="cocinero">
+            </div>
+            <div>
+                <label>Destinatario</label>
+                <input type="text" name="destin" id="destinatario" >
+            </div>
+            <div>
+                <label>Gramos</label><br>
+                <input type="text" name="gramos" id="gramos" > <br>
+            </div>
+            <div>
+                <label>Composición</label>
+                <input type="text" name="compos" id="composicion" >
+            </div>
+            <div>
+                <label>Número de cuenta EEUU</label>
+                <input type="text" name="cuenta" id="cuenta">
+            </div>
+
+            <input type="submit" value="Enviar" id="enviar">
+            <!--<input type="reset" value="Borrar">-->
+        </fieldset>
+    </form>
+    <div>
+        <p>Errorres: <span id="err"></span></p>
+        <input type="submit" value="Reiniciar" id="reinicia">
+    </div>
+
+    <script>
+        
+       
+        var cont=0;
+        var indiceIgual=0;
+        
+        //si no está definida se crea la variable a 0
+        if(localStorage.getItem("contador")==null){
+            localStorage.setItem("contador", cont);
+        }else{
+            cont= localStorage.getItem("contador");
+        }
+
+
+        document.getElementById("err").innerHTML=cont;
+        
+        document.getElementById("reinicia").addEventListener('click',reiniciar);
+		
+        window.onload = iniciar;
+
+    function iniciar() {
+        document.getElementById("enviar").addEventListener('click', validar);
+    }
+
+    function reiniciar(e) {
+        e.preventDefault;
+        cont=0;
+        localStorage.setItem("contador", cont);
+        document.getElementById("err").innerHTML=cont;
+    }
+
+
+
+    function validar(e){
+		e.preventDefault();
+
+		
+		//dos letras en mayúscula, un símbolo y cuatro dígitos
+		var variableFecha= /^\d{2}\/\d{2}\/\d{4}/g;
+		
+		var variableCocin= /[A-Z]{2}[^\s\w\d]\d{4}/g;    //para negar en mayúscula   AS@1123  niega en un grupo[ ] caracteres letra espacio y digito [^\d\s\w]
+		
+		var variableDestino= /^[A-Z]{2,3}_[a-z]+:\d{4}/g; //NM_alburquerque:1234
+		
+		var variableGramos = /^([1-9][0-9][0-9])$|^([1-4][0-9][0-9][0-9])$|5000/g;
+		
+		//formado por una cantidad en gramos seguida de dos conjuntos de una o dos letras seguidas o no de un número
+		var variableComposicion = /^[0-9]*[g][a-zA-Z]{1,2}[0-9]?[a-zA-Z]{1,2}[0-9]?/g;       //200gC3OH7  ^[a-z]{1,2}[0-9]?\w{1,2}[0-9]?
+		
+		
+		validarCampo("fecha",variableFecha);
+		validarCampo("cocinero",variableCocin);
+		validarCampo("gramos",variableGramos);
+		validarCampo("composicion",variableComposicion);
+	
+    }
+
+	//Función que valida si el input esta vacio y esta bien formado segun la expresión regular.
+	function validarCampo(id,expresionReg){
+	
+			if( document.getElementById(id).value.length == 0){
+				//alert("No has introducido ningun nombre de " + id);
+			}else{
+				if(expresionReg.test(document.getElementById(id).value)==false){
+					alert("El "  + id + " no tiene el nombre correctamente formado");
+                    document.getElementById(id).style.borderColor = "red";
+                    cont= parseInt(cont) +1;
+                    localStorage.setItem("contador", cont);
+                    document.getElementById("err").innerHTML=cont;
+
+				}else{
+					document.getElementById(id).style.borderColor = "black";
+				}
+			
+			}
+	}
+
+  
+
+    </script>
+
+</body>
+
+</html>

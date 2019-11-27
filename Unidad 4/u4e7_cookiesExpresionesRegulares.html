@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bolsa </title>
+    <style>
+        div{
+            margin: 25px 0px 25px 0px;
+        }
+
+        label{
+            display:block;
+            margin-bottom: 5px;
+        }
+        p{
+            border: 1px solid black;
+            width:10%;
+            display: inline;
+        }
+    </style>
+</head>
+
+<body><!--
+Crea una nueva versión del ejercicio anterior, donde:
+	Cada vez que el usuario trate de enviar el formulario y haya algún error, una variable contador (almacenada en una cookie) se incrementará.
+	El resultado del número de intentos se reflejará en un campo de texto que se encontrará al final del formulario.
+	Si el usuario sale del programa y vuelve a entrar, el campo de texto mostrará el número almacenado en la cookie.
+	Junto al campo de texto habrá un botón que, al pulsarlo, permitirá reiniciar el valor de la cookie a 0.
+** Probarlo con Firefox, porque Chrome no almacena cookies para archivos locales.
+
+
+-->
+
+    <script>
+        
+    </script>
+
+    <form action="" method="POST" id=form1>
+        <fieldset>
+            <legend>Información de cada bolsa</legend>
+            <div>
+                <label>Fecha de creación</label>
+				<input type="text" name="fecha" id="fecha">
+                <!--<input type="date" name="fecha" id="fecha">-->
+            </div>
+            <div>
+                <label>Cocinero</label>
+                <input type="text" name="cocinero" id="cocinero">
+            </div>
+            <div>
+                <label>Destinatario</label>
+                <input type="text" name="destin" id="destinatario" >
+            </div>
+            <div>
+                <label>Gramos</label><br>
+                <input type="text" name="gramos" id="gramos" > <br>
+            </div>
+            <div>
+                <label>Composición</label>
+                <input type="text" name="compos" id="composicion" >
+            </div>
+            <div>
+                <label>Número de cuenta EEUU</label>
+                <input type="text" name="cuenta" id="cuenta">
+            </div>
+
+            <input type="submit" value="Enviar" id="enviar">
+            <!--<input type="reset" value="Borrar">-->
+        </fieldset>
+    </form>
+    <div>
+        <p>Errorres: <span id="err"></span></p>
+        <input type="submit" value="Reiniciar" id="reinicia">
+    </div>
+
+    <script>
+        
+        //document.cookie = "contador=0"; //si no existe
+        var cont=0;
+        var indiceIgual=0;
+        
+      
+       //cadena con todas las cookies
+        //si el índice es -1 la cookie no existía
+		if(document.cookie.indexOf('contador=')==-1){
+           // alert("No existia");
+            document.cookie = "contador=0 ; expires=Thu, 18 Dec 2020 12:00:00 UTC";   
+        }
+
+
+        //alert(cadenaCookies);
+
+       // document.cookie = "contador=0; max-age=0";
+        
+        var vectorCookies= document.cookie.split(";");
+
+        for(var i=0;i<vectorCookies.length;i++){
+            indiceIgual= vectorCookies[0].indexOf("=");
+            cont= parseInt(vectorCookies[0].substring(indiceIgual+1));//inicio, fin(se omite, final de la cadena)
+           // alert("contador vale "+ cont);
+        }
+        
+        document.getElementById("err").innerHTML=cont;
+        
+        document.getElementById("reinicia").addEventListener('click',reiniciar);
+		
+        window.onload = iniciar;
+
+    function iniciar() {
+        document.getElementById("enviar").addEventListener('click', validar);
+    }
+
+    function reiniciar(e) {
+        e.preventDefault;
+        document.cookie = "contador=0 ; expires=Thu, 18 Dec 2020 12:00:00 UTC";
+        document.getElementById("err").innerHTML=0;
+    }
+
+
+
+    function validar(e){
+		e.preventDefault();
+
+		
+		//dos letras en mayúscula, un símbolo y cuatro dígitos
+		var variableFecha= /^\d{2}\/\d{2}\/\d{4}/g;
+		
+		var variableCocin= /[A-Z]{2}[^\s\w\d]\d{4}/g;    //para negar en mayúscula   AS@1123  niega en un grupo[ ] caracteres letra espacio y digito [^\d\s\w]
+		
+		var variableDestino= /^[A-Z]{2,3}_[a-z]+:\d{4}/g; //NM_alburquerque:1234
+		
+		var variableGramos = /^([1-9][0-9][0-9])$|^([1-4][0-9][0-9][0-9])$|5000/g;
+		
+		//formado por una cantidad en gramos seguida de dos conjuntos de una o dos letras seguidas o no de un número
+		var variableComposicion = /^[0-9]*[g][a-zA-Z]{1,2}[0-9]?[a-zA-Z]{1,2}[0-9]?/g;       //200gC3OH7  ^[a-z]{1,2}[0-9]?\w{1,2}[0-9]?
+		
+		
+		validarCampo("fecha",variableFecha);
+		validarCampo("cocinero",variableCocin);
+		validarCampo("gramos",variableGramos);
+		validarCampo("composicion",variableComposicion);
+	
+    }
+
+	//Función que valida si el input esta vacio y esta bien formado segun la expresión regular.
+	function validarCampo(id,expresionReg){
+	
+			if( document.getElementById(id).value.length == 0){
+				//alert("No has introducido ningun nombre de " + id);
+			}else{
+				if(expresionReg.test(document.getElementById(id).value)==false){
+					alert("El "  + id + " no tiene el nombre correctamente formado");
+                    document.getElementById(id).style.borderColor = "red";
+                    cont= parseInt(cont)+1;
+                    document.cookie = "contador=" + cont + "; expires=Thu, 18 Dec 2020 12:00:00 UTC";
+                    
+                    document.getElementById("err").innerHTML=cont;
+				}else{
+					document.getElementById(id).style.borderColor = "black";
+				}
+			
+			}
+	}
+
+  
+
+    </script>
+
+</body>
+
+</html>

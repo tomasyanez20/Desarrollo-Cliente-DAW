@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+Crea una página web que tenga un listado de tipo <ul>, sin <li>.
+•	En la página habrá tres botones:
+•	“Añadir elemento”: te muestre un prompt para que el 
+usuario introduzca un texto. 
+ Una vez cerrado el prompt el valor se añadirá como un nuevo <li> a la lista creada.
+•	“Borrar primer li”: borra el primer elemento de la lista.
+•	“Borrar último li”: borra el último elemento de la lista. 
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Listado</title>
+    <style>
+        #menu{
+            border:1px solid black;
+            width:30%;
+        }
+    </style>
+</head>
+
+
+
+
+<body>
+
+    <div id="menu">
+            <ul id="listado">
+            </ul>
+    </div>
+
+    
+
+    <div id="botones">
+            <input type="button" value="Añadir Elemento" id="anadir">
+            <input type="button" value="Borrar primer li" id="borrar1">
+            <input type="button" value="Borrar último li" id="borrar2">
+    </div>
+
+    
+
+</body>
+<script>
+    document.getElementById("anadir").addEventListener("click",fanadir);
+    document.getElementById("borrar1").addEventListener("click",fborrar1);
+    document.getElementById("borrar2").addEventListener("click",fborrar2);
+
+
+    function fanadir(e){
+        e.preventDefault();
+        var textoElemento = prompt("Introduce el texto del nuevo elemento");
+        //Crear el nuevo li
+        var newLi = document.createElement("li");
+        //asignar el texto al nuevo li
+        newLi.textContent=textoElemento;
+        //asignar al ul su hijo li
+        document.getElementById("listado").appendChild(newLi);
+    }
+
+
+    //document.getElementById("listado").children; children coge solo los elementos
+    //Borrar el primer elemento
+    function fborrar1(e){
+        e.preventDefault;
+        var primerLi = document.querySelector("li");
+        primerLi.remove();
+
+        //var list = document.getElementById("myList");   // Get the <ul> element with id="myList"
+       // list.removeChild(list.childNodes[0]);           // Remove <ul>'s first child node (index 0)
+
+    }
+
+    //Borrar el ultimo elemento
+    function fborrar2(e){
+      var lista=  document.getElementById("listado");
+      var ultimo = lista.children[lista.children.length-1];
+      ultimo.remove();
+    }
+
+
+</script>
+
+
+</html>

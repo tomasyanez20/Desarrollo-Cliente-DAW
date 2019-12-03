@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+Crea una aplicación que te permitirá generar tus propios formularios de manera dinámica. 
+Para ello dibuja una tabla de una sola fila y varias columnas.
+ En cada columna habrá un botón que realice lo siguiente:
+1.	Crear un input de tipo texto. Le preguntará al usuario
+ mediante un prompt qué nombre de variable (atributo name) tiene el input. 
+ Ese nombre se asignará también al id del input.
+2.	Crear un input de tipo password. Le preguntará al usuario mediante un prompt qué nombre de variable
+ (atributo name) tiene el input. Ese nombre se asignará también al id del input.
+3.	Crear un textarea. Le preguntará al usuario el nombre y generará automáticamente
+ un textarea de 40 columnas y 5 filas.
+4.	Crear un label. Preguntará al usuario a qué input va referido (atributo for).
+5.	Crear una imagen. Preguntará al usuario qué ruta tiene la imagen (atributo src).
+6.	Crear un checkbox. Preguntará al usuario el nombre y el valor (atributos name y value).
+7.	Crear un radio. Preguntará al usuario el nombre y el valor (atributos name y value).
+8.	Crear un botón (submit). Preguntará al usuario el nombre y el valor (atributos name y value).
+ 
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejercicio 3</title>
+    <style>
+        *{
+            margin:0px;
+        }
+
+        table{
+            width:97%;
+            margin: 1em;
+        }
+
+        td{
+            text-align:center;
+        }
+
+
+        table , td{
+            border: 1px solid black;
+        }
+
+        #area{
+            border: 1px solid black;
+            width:97%;
+           
+            margin: 1em;
+            background-color: grey;
+        }
+
+        input{
+            margin:10px;
+            display:block;
+        }
+
+        textarea{
+            margin:10px;
+            display:block; 
+        }
+
+        img{
+            margin:10px;  
+            width: 200px;
+            height: 200px;
+        }
+
+        label{
+            display:inline-block;
+            width: 140px;
+            text-align: right;
+        }
+
+    </style>
+</head>
+
+
+
+
+<body>
+
+    <table>
+        <tr>
+            
+                <td>
+                    <input type="button" value="Crear Input texto" id="botonInput1">
+                </td>
+                <td>
+                    <input type="button" value="Crear Input password" id="botonInput2">
+                </td>
+                <td>
+                    <input type="button" value="Crear text area" id="botonTextArea">
+                </td>
+                <td>
+                    <input type="button" value="Crear label" id="botonLabel">
+                </td>
+                <td>
+                    <input type="button" value="Crear imagen" id="botonImagen">
+                </td>
+                <td>
+                    <input type="button" value="Crear checkbox" id="botonCheckbox">
+                </td>
+                <td>
+                    <input type="button" value="Crear radio" id="botonRadio">
+                </td>
+                <td>
+                    <input type="button" value="Crear botón" id="botonBoton">
+                </td>            
+            </td>
+        </tr>
+    </table>
+
+    <div id="area">
+
+
+    </div>
+
+    
+
+</body>
+<script>
+  
+  //Crar una tabla con una fila con todo botones y un div donde añadir todo
+  //crear input con su tipo text
+  /*
+
+  */
+    
+    document.getElementById("botonInput1").addEventListener("click",anadirInput);
+    document.getElementById("botonInput2").addEventListener("click",anadirInput);
+    
+    document.getElementById("botonTextArea").addEventListener("click",anadirTextArea);
+    document.getElementById("botonLabel").addEventListener("click",anadirLabel);
+    document.getElementById("botonImagen").addEventListener("click",anadirImagen);
+
+    document.getElementById("botonCheckbox").addEventListener("click",anadirInputTipo);
+    document.getElementById("botonRadio").addEventListener("click",anadirInputTipo);
+    document.getElementById("botonBoton").addEventListener("click",anadirInputTipo);
+
+
+    function anadirInput(e){
+        e.preventDefault();
+        var textoElemento = prompt("Introduce el nombre del input");
+        var newInput = document.createElement("input");
+        
+        if(e.target.id=="botonInput1"){
+            newInput.setAttribute("name", textoElemento);
+            newInput.setAttribute("id", textoElemento);
+        }else if(e.target.id=="botonInput2"){
+            
+            newInput.setAttribute("type", "password"); 
+            newInput.setAttribute("name", textoElemento);
+            newInput.setAttribute("id", textoElemento);
+        }
+        
+        document.getElementById("area").appendChild(newInput);
+    }
+    
+  
+
+
+    function anadirTextArea(e){
+        e.preventDefault();
+        var textoElemento = prompt("Introduce el nombre del TextArea");
+        var newTextArea = document.createElement("textArea");
+        newTextArea.setAttribute("name",textoElemento);
+        newTextArea.setAttribute("rows",5);
+        newTextArea.setAttribute("cols",40);
+        document.getElementById("area").appendChild(newTextArea);
+    }
+
+    function anadirLabel(e){
+        e.preventDefault();
+        var textoElemento = prompt("Introduce el nombre del input al que corresponde");
+        // Buscar input asociado
+        var campoInput = document.getElementById(textoElemento);
+        if (campoInput == null) {
+            alert("No existía el input");
+        } else {
+            var newLabel = document.createElement("label");
+            newLabel.setAttribute("for",textoElemento);
+            newLabel.textContent="Etiqueta " + textoElemento;
+            document.getElementById("area").insertBefore(newLabel, campoInput);
+        }
+    }
+
+    function anadirImagen(e){
+        e.preventDefault();
+        var textoElemento = prompt("Introduce la ruta de la imagen");
+        var newImage = document.createElement("img");
+        newImage.setAttribute("src",textoElemento);
+        document.getElementById("area").appendChild(newImage);
+    }
+
+
+
+    function anadirInputTipo(e){
+        e.preventDefault();
+        //alert(e.target.id);
+        var nombreElemento = prompt("Introduce el nombre");
+        var valorElemento = prompt("Introduce el valor");
+        var newCheck = document.createElement("input");
+  
+        if(e.target.id =="botonRadio"){
+            newCheck.setAttribute("type", "radio");
+            newCheck.setAttribute("name", nombreElemento);
+            newCheck.setAttribute("value", valorElemento);
+        }else if(e.target.id =="botonCheckbox"){
+            newCheck.setAttribute("type", "checkbox");
+            newCheck.setAttribute("name", nombreElemento);
+            newCheck.setAttribute("value", valorElemento);
+        }else if(e.target.id=="botonBoton"){
+            newCheck.setAttribute("type", "submit");
+            newCheck.setAttribute("name", nombreElemento);
+            newCheck.setAttribute("value", valorElemento);
+        }
+           
+        document.getElementById("area").appendChild(newCheck);
+    }
+    
+ 
+
+
+
+</script>
+
+
+</html>

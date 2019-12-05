@@ -3,17 +3,33 @@ window.onload = iniciar;
     //body no se ha creado antes de poner onload.
     function iniciar() {
         anadirBoton("Generar Personaje","botonGPersonaje");
-        anadirBoton("Borrar Fila","botonBorra");
+        anadirBoton("Borrar Personaje","botonBorra");
         anadirBoton("Mostrar Numero de filas","botonFilas");
 
-        document.getElementById("botonGPersonaje").addEventListener("click",anadirPersonaje);
-        document.getElementById("botonBorra").addEventListener("click",borrarPlanta);
-        document.getElementById("botonFilas").addEventListener("click",muestraFilas);
+        var div1 = document.createElement("div");
+        div1.setAttribute("id","contenedor");
+
+        document.body.appendChild(div1);
         
-        var tabla = document.createElement("table");
-        tabla.setAttribute("id","tabla1");
-        tabla.setAttribute("border","1");
-        document.body.appendChild(tabla);
+        anadirBoton("Nº Sanji","boton1");
+        anadirBoton("Nº Zoro","boton2");
+        anadirBoton("Nº Nami","boton3");
+        anadirBoton("Nº Luffy","boton4");
+
+
+
+        document.getElementById("botonGPersonaje").addEventListener("click",anadirPersonaje);
+        document.getElementById("botonBorra").addEventListener("click",borrarPersonaje);
+       
+        document.getElementById("boton1").addEventListener("click",cuenta);
+        document.getElementById("boton2").addEventListener("click",cuenta);
+        document.getElementById("boton3").addEventListener("click",cuenta);
+        document.getElementById("boton4").addEventListener("click",cuenta);
+
+        var div2 = document.createElement("div");
+        div2.setAttribute("id","contenedor2");
+        document.body.appendChild(div2);
+      
     }
 
     function anadirBoton(nombre,id){
@@ -24,65 +40,81 @@ window.onload = iniciar;
         document.body.appendChild(boton);
     }
 
-    function borrarPlanta(e){
-        var tabla = document.getElementById("tabla1");
-        if(tabla.rows.length>=1){
-            tabla.deleteRow(-1);
+    function borrarPersonaje(e){
+        var imagenUlt = document.getElementsByTagName("img")[document.getElementsByTagName("img").length-1];
+        
+        if(imagenUlt!=null){
+             document.getElementById("contenedor").removeChild(imagenUlt);
         }else{
-            alert("No hay filas que borrar");
+            alert(" Ninguna imagen que borrar");
         }
     }
-
-
-    function muestraFilas(e){
-        borrarDivs();
-        var div1 = document.createElement("div");
-        document.body.appendChild(div1);
-        var newContent = document.createTextNode("El número de filas es " + document.getElementById("tabla1").rows.length); 
-        div1.appendChild(newContent); //añade texto al div creado.   
-    }
-
-    function borrarDivs(){
-
-        var elements = document.getElementsByTagName('div')
-
-        while (elements[0]){
-            elements[0].parentNode.removeChild(elements[0]);
-        } 
-
-
-
-    }
-
 
 
     function anadirPersonaje(e){
         e.preventDefault();
         var opcion;
+
         opcion = prompt("Elija el nombre del personaje:\n1. Sanji \n2. Zoro \n3. Nami \n4. Luffy.");
 
-        var imagen = document.createElement("img");
-        document.body.appendChild(imagen);
+        var imagen; 
+        //document.body.appendChild(imagen);
 
         switch(opcion){
             case "1" : 
+                    imagen = document.createElement("img");
                     imagen.setAttribute("src","archivos/img_onepiece/sanji.jpg");
             break;
             case "2": 
+                    imagen = document.createElement("img");
                     imagen.setAttribute("src","archivos/img_onepiece/zoro.jpg");
             break;
             case "3":
+                    imagen = document.createElement("img");
                     imagen.setAttribute("src","archivos/img_onepiece/nami.jpg");
             break;
             case "4":
+                    imagen = document.createElement("img");
                     imagen.setAttribute("src","archivos/img_onepiece/luffy.jpg");
             break;
-            default: alert("No has introducido una opción correcta");
+            default: alert("No has introducido una opción correcta"); 
         }
 
+            if(imagen!=null){
+                document.getElementById("contenedor").appendChild(imagen);
+            }
         
         
-    }
+        }
+
+        function cuenta(e){
+            e.preventDefault();
+
+            var cadena = "El número de imágenes ";
+
+            if(e.target.id =="boton1"){
+                cadena +=" de Sanji es: " ;
+                numero= document.querySelectorAll("img[src='archivos/img_onepiece/sanji.jpg']").length;
+            }
+
+            if(e.target.id =="boton2"){
+                cadena +=" de Zoro es: " ;
+                numero= document.querySelectorAll("img[src='archivos/img_onepiece/zoro.jpg']").length;
+            }
+
+            if(e.target.id =="boton3"){
+                cadena +=" de Nami es: " ;
+                numero= document.querySelectorAll("img[src='archivos/img_onepiece/nami.jpg']").length;
+            }
+
+            if(e.target.id =="boton4"){
+                cadena +=" de Luffy es: " ;
+                numero= document.querySelectorAll("img[src='archivos/img_onepiece/luffy.jpg']").length;
+            }
+
+            document.getElementById("contenedor2").innerHTML= cadena + numero;
+            
+        }
 
 
 

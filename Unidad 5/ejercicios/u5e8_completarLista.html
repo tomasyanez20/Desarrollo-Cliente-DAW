@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<style type="text/css">
+
+</style>
+<body>
+  <div id="menu">
+    <ul id="listado">
+    </ul>
+  </div>
+  <div id="botones">
+    <input type="button" value="Añadir Elemento" id="anadir">
+  </div>
+<script type="text/javascript">
+
+/*
+Completar el código JavaScript de para que se añadan nuevos elementos a la lista cada vez que se pulsa sobre 
+el botón. Utilizar las funciones DOM para crear nuevos nodos y añadirlos a la lista existente .El texto de 
+los nuevos elementos se ha de introducir en una caja de texto
+
+*/
+
+
+document.getElementById("anadir").addEventListener("click",fanadir);
+
+function fanadir(e){
+        e.preventDefault();
+        var textoElemento = prompt("Introduce el texto del nuevo elemento");
+        //Crear el nuevo li
+        var newLi = document.createElement("li");
+        //asignar el texto al nuevo li
+        newLi.textContent=textoElemento;
+        //asignar al ul su hijo li
+        document.getElementById("listado").appendChild(newLi);
+}
+
+
+
+</script>
+</body>
+
+</html>

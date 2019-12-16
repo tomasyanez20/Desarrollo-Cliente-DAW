@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+Simula, mediante JavaScript, el comportamiento de una paleta de colores. Define una tabla de forma dinámica con
+ 20 colores. Utiliza una capa como lienzo y comprueba que al hacer clic sobre un color de la tabla, el color del 
+ lienzo se corresponde con el color elegido. Además, mostrarás el valor color elegido en otro campo.
+
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TABLA DINÁMICA</title>
+    <body>
+
+    </body>
+
+    
+
+    <style>
+     
+     
+
+      td{
+        height: 40px;
+        width: 40px;
+      }
+
+      #lienzo{
+        margin:10px;
+        border:2px solid black;
+        width: 200px;
+        height: 100px;
+      }
+
+
+    </style>
+    <script>
+    
+    var tabla= document.createElement("table");
+    tabla.setAttribute("border",1);
+    document.body.appendChild(tabla);  
+    for(var i=0;i<4;i++){
+      var fila= document.createElement("tr")
+      tabla.appendChild(fila);
+      for(var j=0;j<5;j++){
+        var celda= document.createElement("td")
+        celda.addEventListener("click",muestra);
+        celda.style.backgroundColor=getRandomColor();
+        fila.appendChild(celda);
+      }
+    }
+    
+  
+    
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF'; //16 valores
+      var color = '#';
+      for (var i = 0; i < 6; i++) { //cada color tiene 6 caracteres
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+    return color;
+    }
+    
+    function muestra(e){
+      var colorCelda=e.target.style.backgroundColor;
+
+      document.getElementById("lienzo").innerHTML=colorCelda;
+      
+    }
+    
+    var lienzo= document.createElement("div");
+    lienzo.setAttribute("id","lienzo");
+
+    document.body.appendChild(lienzo);
+
+
+ 
+    </script>
+</head>
+
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TITULO</title>
+  <body>
+
+  <SCRIPT type="text/javascript">
+    /*
+Crea un documento que HTML. 
+Al iniciar el documento, se debe cambiar el título por “Prueba” junto con la fecha y hora actual.
+  */
+  window.onload = modTitulo;
+    function modTitulo() {
+      
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+
+      var hora = today.getHours();
+
+      today = dd + '/' + mm + '/' + yyyy;
+
+
+      document.title="Prueba, " +  today + " - hora: " + hora; 
+
+
+     
+    }
+  </SCRIPT>
+
+</head>
+
+<body>
+
+
+</body>
+
+</html>

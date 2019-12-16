@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+Crea una página web que tenga un TextArea y un botón "Crear párrafo". Cuando el usuario haga clic
+ sobre el botón se creará un nuevo párrafo que contendrá el texto del TextArea. En caso de que el 
+ TextArea esté vacío, mostrará un mensaje de error y no creará ningún párrafo.
+
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TEXT AREA</title>
+    <body>
+
+    </body>
+    <style>
+      #boton1{
+        display: block;
+        margin-top:30px;
+      }
+
+    </style>
+    <script>
+    
+    var textArea= document.createElement("TEXTAREA");
+        textArea.setAttribute("id","textarea1");
+    var boton = document.createElement("input");
+        boton.setAttribute("type","button");
+        boton.setAttribute("value","Crea párrafo");
+        boton.setAttribute("id","boton1");
+
+       document.body.appendChild(textArea);
+       document.body.appendChild(boton);
+
+       document.getElementById("boton1").addEventListener("click",anadirParrafo);
+    
+
+       function anadirParrafo(){
+       
+        var textoTextarea=  document.getElementById("textarea1").value;
+        
+
+        if(textoTextarea==""){
+          alert("Error, no hay texto que añadir");
+        }else{
+          var parrafo = document.createElement("p");
+          document.body.appendChild(parrafo);
+          var texto = document.createTextNode(textoTextarea);
+          parrafo.appendChild(texto);
+          document.body.appendChild(parrafo);
+        }
+
+        
+        
+       }
+    </script>
+</head>
+
+
+</html>

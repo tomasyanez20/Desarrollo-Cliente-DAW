@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<style type="text/css">
+div.grupo {
+    background: #C0D9FE;
+    margin:10px;
+    padding: 12px;
+    font-size: 20px;
+}
+</style>
+
+
+
+<script type="text/javascript">
+
+/*
+Haciendo uso de getElementsByClassName() y partiendo del ejemplo cambiaColor.html,
+ cambia el color de fondo de los div del ejemplo. 
+Además, tiene que aparecer un texto con el id de cada div.
+
+*/
+function cambiaestilo(){
+   var vector = document.getElementsByClassName("grupo");
+    for(var i=0;i<vector.length;i++){
+      vector[i].style.backgroundColor = "orange";
+      
+      textoId = document.createTextNode(", id:  " + vector[i].id);
+      vector[i].appendChild(textoId);
+    }
+
+  
+}
+</script>
+</head>
+<body>
+<div id="div1" class="grupo">Div 1</div>
+<div id="div2" class="grupo">Div 2</div>
+<div id="div3" class="grupo">Div 3</div>
+<button onclick="cambiaestilo();">Cambia color</button>
+</body>
+</html>

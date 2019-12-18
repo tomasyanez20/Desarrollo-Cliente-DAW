@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+Crea un archivo series.xml con información de series:
+•	Series: será el elemento principal del XML.
+o	Serie: contendrá los datos de una serie en concreto, que serán:
+	Título: nombre de la serie.
+	Cadena: nombre de la cadena que produce la serie (HBO, FX, etc.)
+	Director: nombre del director de la serie.
+	Año: año de estreno de la serie.
+	Terminada: podrá contener un valor “sí” o “no” en función si ha terminado o no su emisión.
+
+Crea una página web que, al cargarse, haga una petición Ajax al servidor, que le devolverá el archivo XML.
+
+Si el archivo series.xml no existe o no se ha podido cargar correctamente, se mostrará un texto
+ indicándolo en la pantalla.
+
+En la página se generará entonces una tabla con los datos de las series, teniendo en cuenta las 
+siguientes condiciones:
+
+•	El título, la cadena y el director: el título será negrita, y el director en cursiva.
+•	El año aparecerá en color rojo si la serie es anterior al año 2000, en amarillo si está entre el
+ 2001 y el 2010 y en verde si es posterior al 2011. Estas variaciones se recogen en un archivo en CSS
+  con reglas, como por ejemplo .rojo, .amarillo o .verde. 
+•	En la celda “terminada” habrá un icono que indique si la serie se ha terminado o no su emisión. 
+Para ello, utiliza una fuente de iconos como Font Awesome (ver ejemplo de cómo hacerlo en la carpeta
+ “prueba-fuentes”).
+
+ 
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SERIES</title>
+    <style>
+        table,th,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="tabla1">
+        <tr>
+            <th>Título</th>
+            <th>Cadena</th>
+            <th>Director</th>
+            <th>Año</th>
+            <th>Terminada</th>
+        </tr>
+    </table>
+
+</body>
+<script>
+
+    function cargarXMLSeries(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.readyState==4 && this.status==200){
+                cargarXMLTabla(this);
+            }
+        };
+
+        xhttp.open("GET","series.xml",true);
+        xhttp.send();
+    }
+
+
+  function cargarXMLTabla(){
+    var documentoXML = xml.responseXML;
+    //var tabla = 
+  }
+
+</script>
+
+
+</html>

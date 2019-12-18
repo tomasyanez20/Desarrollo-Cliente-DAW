@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+Crea una página web con las siguientes características:
+
+•	Tendrá un campo de texto en el que, nada más cargarse la página, se muestre la url de la misma.
+ Ese campo se puede editar por el usuario.
+•	Un botón junto al campo de texto que se llame “Mostrar contenido”. Al hacer clic sobre él, se 
+cargará en un textarea el contenido del archivo indicado en el campo de texto.
+•	El textarea, inicialmente estará vacío.
+ 
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+      #inputURL{
+          width: 50%;
+          display: block;
+      }
+    </style>
+</head>
+
+
+
+
+<body>
+    <input id="inputURL" type="text">
+
+    <textarea id="area">
+
+    </textarea>
+
+    <input id="boton1" type="button" value="Cargar">
+
+</body>
+<script>
+   var URLactual = window.location;
+   document.getElementById("inputURL").value=URLactual;
+
+   document.getElementById("boton1").addEventListener("click",carga);
+
+   
+
+    function carga(){
+ 
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange= function(){
+            if(this.readyState == 4 && this.status==200 ){
+                document.getElementById("area").innerHTML = this.responseText;
+            }
+        };
+
+        var archivo=document.getElementById("inputURL").value;
+
+        
+
+        xhttp.open("GET",archivo + ".txt",true);
+        xhttp.send();
+    }
+
+</script>
+
+
+</html>

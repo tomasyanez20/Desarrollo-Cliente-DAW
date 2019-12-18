@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<series>
+    <serie>
+        <titulo>Vikingos</titulo>
+        <cadena>History</cadena>
+        <director>Michael Hirst</director>
+        <anio>2013</anio>
+        <terminada>no</terminada>
+    </serie>
+    <serie>
+        <titulo>Juego de Tronos</titulo>
+        <cadena>HBO</cadena>
+        <director> D.B. Weiss, David Benioff</director>
+        <anio>2011</anio>
+        <terminada>si</terminada>
+    </serie>
+    <serie>
+        <titulo>Hijos de la Anarquía</titulo>
+        <cadena>FX</cadena>
+        <director>Kurt Sutter</director>
+        <anio>2008</anio>
+        <terminada>si</terminada>
+    </serie>   
+</series>

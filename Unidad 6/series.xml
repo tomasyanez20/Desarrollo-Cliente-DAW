@@ -20,5 +20,12 @@
         <director>Kurt Sutter</director>
         <anio>2008</anio>
         <terminada>si</terminada>
-    </serie>   
+    </serie>  
+    <serie>
+        <titulo>H</titulo>
+        <cadena>FX</cadena>
+        <director>Al</director>
+        <anio>1999</anio>
+        <terminada>si</terminada>
+    </serie>    
 </series>

@@ -35,11 +35,27 @@ Para ello, utiliza una fuente de iconos como Font Awesome (ver ejemplo de cómo 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SERIES</title>
+    <link rel="stylesheet" href="fontawesome\css\all.css">
     <style>
+
         table,th,td{
             border: 1px solid black;
             border-collapse: collapse;
         }
+
+        .rojo{
+            color:red;
+           
+        }
+
+        .amarillo{
+            color:yellow;
+        }
+      
+        .verde{
+            color:green;
+        }
+
     </style>
 </head>
 
@@ -57,11 +73,17 @@ Para ello, utiliza una fuente de iconos como Font Awesome (ver ejemplo de cómo 
 </body>
 <script>
 
+    cargarXMLSeries();
+
     function cargarXMLSeries(){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
+            //readystate=4 la operación ha terminado
+            //alert(this.status);
             if(this.readyState==4 && this.status==200){
                 cargarXMLTabla(this);
+            }else if(this.status==404){
+                alert("no se ha podido cargar el xml");
             }
         };
 
@@ -70,9 +92,71 @@ Para ello, utiliza una fuente de iconos como Font Awesome (ver ejemplo de cómo 
     }
 
 
-  function cargarXMLTabla(){
+  function cargarXMLTabla(xml){
     var documentoXML = xml.responseXML;
-    //var tabla = 
+    var fila; 
+    var textoCelda;
+    var series = documentoXML.getElementsByTagName("serie");
+    var valorCelda;
+    for(var i=0;i<series.length;i++){
+        fila = document.createElement("tr");
+        document.getElementById("tabla1").appendChild(fila);
+
+        crearCelda(fila,textoCelda,"titulo",series[i]); 
+        crearCelda(fila,textoCelda,"cadena",series[i]);
+        crearCelda(fila,textoCelda,"director",series[i]);
+        crearCelda(fila,textoCelda,"anio",series[i]);
+        crearCelda(fila,textoCelda,"terminada",series[i]);
+
+    }
+  }
+
+
+  function crearCelda(fila,textoCelda,nombre,valorCelda){
+        var col;
+        textoCelda= document.createTextNode(valorCelda.getElementsByTagName(nombre)[0].textContent);
+        col= document.createElement("td");
+        col.appendChild(textoCelda);
+
+        
+
+        if(nombre=="anio"){
+            if(textoCelda.textContent < 2000){
+                //alert(textoCelda.textContent);
+                col.setAttribute("class","rojo");
+            }
+
+            if(textoCelda.textContent > 2001 && textoCelda.textContent < 2010){
+                //alert(textoCelda.textContent);
+                col.setAttribute("class","amarillo");
+            }
+
+            if(textoCelda.textContent >= 2011){
+                //alert(textoCelda.textContent);
+                col.setAttribute("class","verde");
+            }
+        }
+
+        if(nombre=="titulo"){
+            col.style.fontWeight="bold";           
+        }
+
+        if(nombre=="director"){
+            col.style.fontStyle="italic";
+        }
+
+        if(nombre="terminada"){
+            if(textoCelda.textContent=="si"){
+                textoCelda.textContent="";
+                col.setAttribute("class","fas fa-check-circle");
+            }   
+            if(textoCelda.textContent=="no"){
+                textoCelda.textContent="";
+                col.setAttribute("class","fas fa-times-circle");
+            }   
+        }
+
+        fila.appendChild(col);    
   }
 
 </script>

@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html>
+    <head>              
+        <meta charset="utf-8">
+        <style>
+          
+        </style>
+    </head>
+
+  
+
+
+<body>
+
+    <input type="text" id="nombre">
+    <input type="button" value="introduce una localidad" id="bot">
+    
+    <div id="resultado">
+        
+    </div>
+
+    
+<script>
+ /*
+ Crea un programa con las siguientes características: 
+•	Una página con HTML que tenga un input de tipo texto y un botón: cuando el usuario introduzca el nombre de una
+ localidad y pulse el botón obtendrá, en un div “resultado”, un mensaje que indicará si la ciudad está incluida
+  dentro de una lista de ciudades o no. El mensaje será rojo si no está incluida y verde en caso afirmativo.
+•	Una archivo en PHP que compruebe que la localidad recibida por parámetro está o no incluida dentro de una
+ lista de 10 localidades (utiliza un array en PHP y recórrelo para comprobarlo).
+•	La petición debe realizarse de forma asíncrona, de modo que no se recargará la página, sino que 
+se mostrará el resultado una vez finalizada la consulta al servidor.
+ */   
+
+    document.getElementById("bot").addEventListener("click",pulsa)
+
+    function pulsa(e){
+        e.preventDefault();
+
+        var cadena = document.getElementById("nombre").value;
+        
+
+        var x = new XMLHttpRequest();
+        x.onreadystatechange = function(){
+            if(this.readyState==4 && this.status==200){
+                document.getElementById("resultado").innerHTML= this.responseText;
+                if (document.getElementById("resultado").innerHTML== "La ciudad está incluida en la lista de ciudades"){
+                    document.getElementById("resultado").style.color="green";
+                }else if (document.getElementById("resultado").innerHTML== "La ciudad no está incluída en la lista"){
+                    document.getElementById("resultado").style.color="red";
+                }
+            }
+        }
+        x.open("GET","local.php?nombre="+cadena,true);
+        x.send();
+    }
+
+
+
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+Crea un archivo viajes.xml, donde se registren los posibles viajes (origen y destino) de ofrece una
+ empresa de autobuses.
+Los orígenes y destinos posibles son:
+•	De Madrid: a Barcelona, Valencia y Sevilla
+•	De Barcelona: a Madrid y Zaragoza
+•	De Valencia: a Madrid
+
+Crea una página web formada por:
+•	Una lista desplegable donde se encuentre el listado de orígenes posibles y otro para los destinos
+•	Al cargar la página web, se obtendrá del servidor el archivo viajes.xml y se cargará en el primer desplegable,
+ la lista de orígenes posibles
+•	Una vez seleccionado uno de los orígenes, se mostrará la lista de destinos para ese origen
+
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SERIES</title>
+    <link rel="stylesheet" href="fontawesome\css\all.css">
+    <style>
+
+        
+
+    </style>
+</head>
+
+<p>
+    Ciudades origen: 
+    <select name="viajesOrigen" id="selectOrigenes" ><!--onchange="myFunction()"-->
+    </select>
+</p>
+
+<p id="1p"></p>
+
+<p>
+    Ciudades destino: 
+    <select name="viajesDestino" id="selectDestinos" >
+    </select>
+</p>
+</body>
+<script>
+
+    cargarXMLViajes();
+
+    function cargarXMLViajes(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            //readystate=4 la operación ha terminado
+            //alert(this.status);
+            if(this.readyState==4 && this.status==200){
+                cargarXMLOpciones(this);
+            }else if(this.status==404){
+                alert("no se ha podido cargar el xml");
+            }
+        };
+
+        xhttp.open("GET","viajes.xml",true);
+        xhttp.send();
+    }
+
+    function myFunction(){
+        var x= document.getElementById("selectOrigenes").value;
+        var d= document.getElementById("selectDestinos");
+
+        document.getElementById("1p").innerHTML="Has seleccionado el origen " + x; 
+
+
+
+        /*
+        De Madrid: a Barcelona, Valencia y Sevilla
+    	De Barcelona: a Madrid y Zaragoza
+    	De Valencia: a Madrid
+        */
+        var e;
+       
+        if(x=="Valencia"){
+            e = document.createElement("option");
+            texto = document.createTextNode("Madrid");
+            e.setAttribute("value",texto.nodeValue);
+            e.appendChild(texto);
+            d.appendChild(e);
+        }else if(x=="Barcelona"){
+            e = document.createElement("option");
+            texto = document.createTextNode("Madrid");
+            e.setAttribute("value",texto.nodeValue);
+            e.appendChild(texto);
+            d.appendChild(e);
+
+            e = document.createElement("option");
+            texto = document.createTextNode("Zaragoza");
+            e.setAttribute("value",texto.nodeValue);
+            e.appendChild(texto);
+            d.appendChild(e);
+        }else if(x=="Madrid"){
+            e = document.createElement("option");
+            texto = document.createTextNode("Barcelona");
+            e.setAttribute("value",texto.nodeValue);
+            e.appendChild(texto);
+            d.appendChild(e);
+
+            e = document.createElement("option");
+            texto = document.createTextNode("Valencia");
+            e.setAttribute("value",texto.nodeValue);
+            e.appendChild(texto);
+            d.appendChild(e);
+
+            e = document.createElement("option");
+            texto = document.createTextNode("Sevilla");
+            e.setAttribute("value",texto.nodeValue);
+            e.appendChild(texto);
+            d.appendChild(e);
+        }
+
+
+
+    }
+
+
+
+  function cargarXMLOpciones(xml){
+    var documentoXML = xml.responseXML;
+    var o = documentoXML.getElementsByTagName("origen");
+    
+    for (i = 0; i < o.length; i++) {
+        alert(o[i].nextSibling.nodeValue);
+    }
+
+    
+    /*
+    var ciudadesOrigen = origenes[0].getElementsByTagName("ciudad");
+    var elemento; 
+    var textoCiudad;
+
+    var destinos = documentoXML.getElementsByTagName("destinos");
+    var ciudadesDestino = destinos[0].getElementsByTagName("ciudad");
+    //alert(ciudadesDestino.length);
+
+    
+
+    var select1= document.getElementById("selectOrigenes");
+
+    for(var i=0;i<ciudadesOrigen.length;i++){
+        
+        elemento = document.createElement("option");
+        elemento.setAttribute("value",ciudadesOrigen[i].childNodes[0].nodeValue);
+        
+        select1.appendChild(elemento);
+        textoCiudad = document.createTextNode(ciudadesOrigen[i].childNodes[0].nodeValue);
+        elemento.appendChild(textoCiudad);
+    }*/
+  }
+
+
+</script>
+
+
+</html>

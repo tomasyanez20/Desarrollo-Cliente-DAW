@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+
+Partiendo del fichero json “portafolio.json”, visualiza en una tabla toda la información que hay en 
+ese fichero mediante una llamada AJAX.
+
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PORTAFOLIO</title>
+</head>
+<style>
+
+
+    table,th,td{
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+
+    <table id="tabla">
+        <tr>
+            <th>Titulo</th>
+            <th>Fecha</th>
+            <th>Texto</th>
+        </tr>
+
+    </table>
+    
+</body>
+<script>
+
+    cargarXMLSeries();
+
+    function cargarXMLSeries(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            //readystate=4 la operación ha terminado
+            //alert(this.status);
+            if(this.readyState==4 && this.status==200){
+                cargarJSON(this);             
+            }
+        };
+
+        xhttp.open("GET","portafolio.json",true);
+        xhttp.send();
+    }
+
+    function cargarJSON(datos){
+            //datos es serie, todo el json
+            var obj = JSON.parse(datos.responseText);    
+            var tabla= document.getElementById("tabla");
+            var fila;
+            var celda;
+
+            for(var i in obj){   
+                        for( var j=0; j< obj[i].length; j++){
+                            fila= document.createElement("tr");
+                            celda= document.createElement("td");
+                            celda.appendChild(document.createTextNode(obj[i][j].titulo));
+                            fila.appendChild(celda);
+                            celda= document.createElement("td");
+                            celda.appendChild(document.createTextNode(obj[i][j].fecha));
+                            fila.appendChild(celda);
+                            celda= document.createElement("td");
+                            celda.appendChild(document.createTextNode(obj[i][j].texto));
+                            fila.appendChild(celda);
+                            tabla.appendChild(fila);   
+                        }                        
+                }
+    }
+
+
+  
+</script>
+
+
+</html>

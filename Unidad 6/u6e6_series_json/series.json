@@ -3,7 +3,7 @@
         "serie":[
             {"titulo":"Vikingos","cadena":"History","director":"Michael Hirst","anio":"2013","terminada":"no"},
             {"titulo":"Juego de Tronos","cadena":"HBO","director":"D.B. Weiss, David Benioff","anio":"2013","terminada":"si"},
-            {"titulo":"Hijos de la Anarquía","cadena":"FX","director":"Michaasdel Hirst","anio":"2013","terminada":"si"}
+            {"titulo":"Hijos de la Anarquía","cadena":"FX","director":"Michaasdel Hirst","anio":"1990","terminada":"si"}
         ]
     }
 }

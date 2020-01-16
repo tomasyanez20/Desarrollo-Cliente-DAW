@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+.
+
+Crea una página web que, al cargarse, haga una petición Ajax al servidor, que le devolverá el archivo JSON.
+
+Si el archivo series.xml no existe o no se ha podido cargar correctamente, se mostrará un texto
+ indicándolo en la pantalla.
+
+En la página se generará entonces una tabla con los datos de las series, teniendo en cuenta las 
+siguientes condiciones:
+
+•	El título, la cadena y el director: el título será negrita, y el director en cursiva.
+•	El año aparecerá en color rojo si la serie es anterior al año 2000, en amarillo si está entre el
+ 2001 y el 2010 y en verde si es posterior al 2011. Estas variaciones se recogen en un archivo en CSS
+  con reglas, como por ejemplo .rojo, .amarillo o .verde. 
+•	En la celda “terminada” habrá un icono que indique si la serie se ha terminado o no su emisión. 
+Para ello, utiliza una fuente de iconos como Font Awesome (ver ejemplo de cómo hacerlo en la carpeta
+ “prueba-fuentes”).
+
+ 
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SERIES</title>
+
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <style>
+
+        table,th,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        .rojo{
+            color:red;
+           
+        }
+
+        .amarillo{
+            color:yellow;
+        }
+      
+        .verde{
+            color:green;
+        }
+
+    </style>
+</head>
+
+<body>
+    <table id="tabla1">
+        <tr>
+            <th>Título</th>
+            <th>Cadena</th>
+            <th>Director</th>
+            <th>Año</th>
+            <th>Terminada</th>
+        </tr>
+    </table>
+
+</body>
+<script>
+
+    cargarXMLSeries();
+
+    function cargarXMLSeries(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            //readystate=4 la operación ha terminado
+            //alert(this.status);
+            if(this.readyState==4 && this.status==200){
+                cargarJSONTabla(this);             
+            }
+        };
+
+        xhttp.open("GET","series.json",true);
+        xhttp.send();
+    }
+
+    function cargarJSONTabla(datos){
+            //datos es serie, todo el json
+            var obj = JSON.parse(datos.responseText);    
+           
+
+            for(var i in obj){
+                    //alert(series[i].serie[0].titulo);
+                    
+                    for(var j=0; j< obj[i].serie.length; j++){
+                        //alert (obj[i].serie[j].titulo);
+                        //crear una fila
+                        fila = document.createElement("tr");
+                        document.getElementById("tabla1").appendChild(fila);
+
+                        crearCelda(fila,"titulo",obj[i].serie[j].titulo); 
+                        crearCelda(fila,"cadena",obj[i].serie[j].cadena);
+                        crearCelda(fila,"director",obj[i].serie[j].director);
+                        crearCelda(fila,"anio",obj[i].serie[j].anio);
+                        crearCelda(fila,"terminada",obj[i].serie[j].terminada);
+                    }
+    
+                }
+    }
+
+
+  function crearCelda(fila,nombre,valorCelda){
+        var col;
+       
+        col= document.createElement("td");
+        textoCelda= document.createTextNode(valorCelda);
+        col.appendChild(textoCelda);
+
+        
+
+        if(nombre=="anio"){
+            if(textoCelda.textContent < 2000){
+
+                col.setAttribute("class","rojo");
+            }
+
+            if(textoCelda.textContent > 2001 && textoCelda.textContent < 2010){
+
+                col.setAttribute("class","amarillo");
+            }
+
+            if(textoCelda.textContent >= 2011){
+
+                col.setAttribute("class","verde");
+            }
+        }
+
+        if(nombre=="titulo"){
+            col.style.fontWeight="bold";           
+        }
+
+        if(nombre=="director"){
+            col.style.fontStyle="italic";
+        }
+
+        if(nombre="terminada"){
+            if(textoCelda.textContent=="si"){
+                textoCelda.textContent="";
+                col.setAttribute("class","fas fa-check-circle");
+            }   
+            if(textoCelda.textContent=="no"){
+                textoCelda.textContent="";
+                col.setAttribute("class","fas fa-times-circle");
+            }   
+        }
+
+        fila.appendChild(col);    
+  }
+
+</script>
+
+
+</html>

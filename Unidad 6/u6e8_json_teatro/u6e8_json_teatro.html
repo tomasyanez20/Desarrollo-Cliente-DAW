@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+
+Realice una página HTML teniendo en cuenta que nada más acceder a la página existirá un desplegable donde
+ los teatros que se encuentran en el fichero “teatros.xml”. La carga de los datos se ha de realizar de forma
+  asíncrona mediante AJAX. 
+
+1.	Al seleccionar un teatro del desplegable se deben las obras que hay en cartelera en el mismo. Para ello 
+se hará uso del fichero “cartelera.json”. Se visualizará el título de la obra, el precio, la sinopsis y la 
+imagen de la obra en campos separados. En principio se mostrará la información de la primera obra.
+2.	Para poder acceder al resto de las obras de dicho teatro se mostrarán 4 botones con los títulos “primero”,
+ “anterior”, “siguiente”, “ultimo”. Se debe controlar que cuando se esté en la primera obra solamente estén 
+ activos los botones de siguiente y último, etc…
+
+3.	Al cambiar de teatro no se visualizará la información del resto de teatros, es decir, se limpiará la pantalla 
+
+-->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TEATROS</title>
+</head>
+<style>
+
+
+    table,th,td{
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    div{
+        margin-top: 20px;
+    }
+</style>
+
+<body>
+
+    <select id="desplegable" onchange="cambia()">
+        
+    </select>
+    
+    <table id="tabla1">
+        <tr>
+           <th>Titulo</th>
+           <th>Precio</th>
+           <th>Sinopsis</th>
+           <th>Imagen</th>
+        </tr>
+    </table>
+    <div id="botones">
+        <input type="button" id="1" value="primero" onclick="prim">
+        <input type="button" id="2" value="anterior"onclick="segun">
+        <input type="button" id="3" value="segundo" onclick="ter">
+        <input type="button" id="4" value="último" onclick="ult">
+    </div>
+</body>
+<script>
+
+    cargarXMLSeries();
+
+    function cargarXMLSeries(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            //readystate=4 la operación ha terminado
+            //alert(this.status);
+            if(this.readyState==4 && this.status==200){
+                cargarXML(this);
+
+            }
+        };
+
+        xhttp.open("GET","teatros.xml",true);
+        xhttp.send();
+    }
+
+    function cargarXML(datos){
+            //datos es serie, todo el json
+            var documentoXML = datos.responseXML;   
+            var desplegable= document.getElementById("desplegable");
+            var teatros= documentoXML.getElementsByTagName("TEATRO");
+            var opcion;
+
+            for(var i=0;i<teatros.length;i++){
+                opcion = document.createElement("option");
+                texto= document.createTextNode(teatros[i].textContent);
+                opcion.appendChild(texto);
+                desplegable.appendChild(opcion);
+                opcion.setAttribute("value",teatros[i].textContent );
+            }   
+    }
+
+    function cambia(){
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+
+            if(this.readyState==4 && this.status==200){
+                cargarJSON(this);
+            }
+            
+        };
+        xhttp.open("GET","cartelera.json",true);
+        xhttp.send();
+    }
+
+    function cargarJSON(datos){
+            var obj = JSON.parse(datos.responseText);  
+            var tabla= document.getElementById("tabla1");
+            var fila;
+            var celda;
+            var img;
+            var desp;
+
+            document.getElementById("1").disabled="true";
+
+            var teatro1= [];
+            var teatro2= [];
+            var teatro3= [];
+
+            desp = document.getElementById("desplegable");
+            var valorDesp= desp.options[desp.selectedIndex].value;
+
+            tabla.innerHTML = "";
+           
+
+            for(var i in obj){
+                for( var j=0; j< obj[i].length; j++){
+                    
+                            if(obj[i][j].teatro=="Lara"){
+                                var obra=[obj[i][j].titulo,obj[i][j].precio,obj[i][j].sinopsis,obj[i][j].imagen];
+                                teatro1.push(obra);
+                                
+                                /*
+                                fila= document.createElement("tr");
+                                celda= document.createElement("td");
+                                celda.appendChild(document.createTextNode(obj[i][j].titulo));
+                                fila.appendChild(celda);
+                                celda= document.createElement("td");
+                                celda.appendChild(document.createTextNode(obj[i][j].precio));
+                                fila.appendChild(celda);
+                                celda= document.createElement("td");
+                                celda.appendChild(document.createTextNode(obj[i][j].sinopsis));
+                                fila.appendChild(celda);
+                                celda= document.createElement("td");
+                                img = document.createElement("IMG");
+                                img.setAttribute("src",obj[i][j].imagen);
+                                celda.appendChild(img);
+                                fila.appendChild(celda);
+                                tabla.appendChild(fila);  
+                                */
+                            }
+                            if(obj[i][j].teatro=="Maravillas" ){
+                                var obra=[obj[i][j].titulo,obj[i][j].precio,obj[i][j].sinopsis,obj[i][j].imagen];
+                                teatro2.push(obra);
+                                
+                            }
+                            if(obj[i][j].teatro=="Arlequin Gran Via" ){
+                                var obra=[obj[i][j].titulo,obj[i][j].precio,obj[i][j].sinopsis,obj[i][j].imagen];
+                                teatro3.push(obra);
+                            }
+ 
+                                           
+            }
+
+            
+
+        } 
+
+        if( valorDesp=="Lara"){
+            imprimirPrimeraObra(teatro1);
+        }
+        if( valorDesp=="Maravillas"){
+            imprimirPrimeraObra(teatro2);
+        }
+        if( valorDesp=="Arlequin Gran Via"){
+            imprimirPrimeraObra(teatro3);
+        }
+        
+      
+
+
+    }
+
+    function imprimirPrimeraObra(teatro){
+        var celda,fila;
+        var tabla= document.getElementById("tabla1");
+        
+                                fila= document.createElement("tr");
+                                celda= document.createElement("td");
+                                celda.appendChild(document.createTextNode(teatro[0][0]));
+                                fila.appendChild(celda);
+                                celda= document.createElement("td");
+                                celda.appendChild(document.createTextNode(teatro[0][1]));
+                                fila.appendChild(celda);
+                                celda= document.createElement("td");
+                                celda.appendChild(document.createTextNode(teatro[0][2]));
+                                fila.appendChild(celda);
+                                celda= document.createElement("td");
+                                img = document.createElement("IMG");
+                                img.setAttribute("src",teatro[0][3]);
+                                celda.appendChild(img);
+                                fila.appendChild(celda);
+                                tabla.appendChild(fila);  
+        
+    }
+
+    function imprimirSegundaObra(teatro){
+        var celda,fila;
+        var tabla= document.getElementById("tabla1");
+        
+                                fila= document.createElement("tr");
+                                celda= document.createElement("td");
+                                celda.appendChild(document.createTextNode(teatro[0][0]));
+                                fila.appendChild(celda);
+                                celda= document.createElement("td");
+                                celda.appendChild(document.createTextNode(teatro[0][1]));
+                                fila.appendChild(celda);
+                                celda= document.createElement("td");
+                                celda.appendChild(document.createTextNode(teatro[0][2]));
+                                fila.appendChild(celda);
+                                celda= document.createElement("td");
+                                img = document.createElement("IMG");
+                                img.setAttribute("src",teatro[0][3]);
+                                celda.appendChild(img);
+                                fila.appendChild(celda);
+                                tabla.appendChild(fila);  
+        
+    }
+                
+            
+    
+
+    
+  
+</script>
+
+
+</html>

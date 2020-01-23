@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+	<title>Probando eventos de jQuery</title>
+	<meta charset="UTF-8">
+	<style>
+		img {
+			max-width: 100%;
+		}
+		div#header {
+			background-color: gray;
+			text-align: center;
+		}
+		div#wrapper {
+			max-width: 800px;
+			margin: 0 auto;
+			overflow: auto;
+		}
+		div#izquierda, div#centro, div#derecha {
+			padding: 0 0 0 3%;
+			margin: 0;
+			float: left;
+		}
+		div#izquierda {
+			width: 30%;
+		}
+		div#centro {
+			width: 30%;
+		}
+		div#derecha {
+			width: 30%;
+		}
+		div#footer {
+			border-top: gray solid 1px;
+		}
+		
+	</style>
+	<script src="../jquery-3.4.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="header">
+	<h1>Probando los selectores jQuery</h1>
+</div>
+<div id="wrapper">
+	<div id="izquierda">
+		<p><a href="#"><img src="imagenes/anchovies.jpg" alt=""Prueba los eventos click(), dblclik(), mouseover() y mouseleave()"" title="Prueba los eventos click(), dblclik(), mouseover() y mouseleave()"></a></p>
+		<p class="msg">En este párrafo se verán los eventos que se están produciendo.</p>
+	</div>
+	<div id="centro">
+		<p><a href="#"><img src="imagenes/anchovies.jpg" alt=""Prueba los eventos mousedown(), mouseup() y hover()"" title="Prueba los eventos  mousedown(), mouseup() y hover()"></a></p>
+		<p class="msg">En este párrafo se verán los eventos que se están produciendo.</p>
+	</div>
+	<div id="derecha">
+		<p><input type="text" size="10em"></p>
+		<p class="msg">En este párrafo se verán los eventos que se están produciendo.</p>
+	</div>
+</div>
+<div id="footer">
+	<p>&copy;2015</p>
+</div>
+<script>
+/*
+En la página hay tres zonas: izquierda centro y derecha. En las dos primeras hay una imagen y 
+un párrafo. En la de la derecha, un input y un párrafo.
+
+Cuando se produzca un evento sobre las imágenes o sobre el input,  en el párrafo se mostrará un
+ mensaje que indique qué evento se ha producido sobre la imagen/input.
+
+Los eventos que se probarán el cada parte de la página son:
+•	En la parte izquierda: click(), dblclick(), mouseenter(), mouveleave().
+•	En la parte centro: mousedown(), mouseup() y hover().
+•	En la parte derecha: focus() y blur().
+
+*/
+$(document).ready(function () {
+//EVENTOS IMAGEN IZQ
+$("#izquierda img").click( function(e){
+	$("#izquierda p.msg").html("Evento de tipo " + e.type);
+}
+);
+
+$("#izquierda img").dblclick( function(e){
+	$("#izquierda p.msg").html("Evento de tipo " + e.type);
+}
+);
+
+//Evento cuando el ratón pasa sobre el elemento
+$("#izquierda img").mouseenter( function(e){
+	$("#izquierda p.msg").html("Evento de tipo " + e.type);
+}
+);
+
+$("#izquierda img").mouseleave( function(e){
+	$("#izquierda p.msg").html("Evento de tipo " + e.type);
+}
+);
+
+//EVENTOS IMAGEN CENTRO
+$("#centro img").mousedown( function(e){
+	$("#centro p.msg").html("Evento de tipo " + e.type);
+}
+);
+
+$("#centro img").mouseup( function(e){
+	$("#centro p.msg").html("Evento de tipo " + e.type);
+}
+);
+
+$("#centro img").hover( function(e){
+	$("#centro p.msg").html("Evento de tipo sobre la imagen hover");
+}
+);
+
+
+
+//EVENTOS  DER
+$("#derecha input").focus( function(e){
+	$("#derecha p.msg").html("Evento de tipo " + e.type);
+}
+);
+
+$("#derecha input").blur( function(e){
+	$("#derecha p.msg").html("Evento de tipo " + e.type);
+}
+);
+
+});
+ 
+
+</script>
+
+</body>
+</html>

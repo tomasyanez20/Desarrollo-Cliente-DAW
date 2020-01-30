@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        Párrafo 1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel amet natus praesentium neque consequatur at, fugiat consectetur aliquam magnam optio et ducimus laborum placeat veniam alias quia dolorem repudiandae officiis!
+    </p>
+    <p>
+        Parrafo 2 sadasadasdasdasdasd
+    </p>
+    <p>Parrafo 3 La casa de pepo
+    </p>
+    <p>Parrafo 4</p>
+    <script src="jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script>
+        /*
+    12.	ARRAYS
+Crea una página con 4 párrafos, cada uno con un texto diferente.
+En la página, habrá un script en jQuery que realice las siguientes operaciones:
+•	Crea un array con los números del 0 al 6. Muéstralo por consola.
+•	Crea un array con los números del array anterior, multiplicados por 3.
+ Para hacerlo, utiliza el método $.each. Muéstralo por consola.
+•	Crea otro array, con los números del primer array, multiplicados por 4. Para hacerlo, utiliza el método $.map. Muéstralo por consola.
+•	Crea un array formado por los elementos tres arrays anteriores, pero sin modificar el contenido de esos arrays. Muéstralo por consola.
+
+•	Muestra por consola el número de párrafos que hay en el documento.
+•	Extrae el tercer párrafo, utilizando el método .get(), y muestra su texto en consola.
+•	Crea un array cuyos elementos sean el texto de los párrafos (utiliza el método $.makeArray(). Muéstralo por consola.
+•	Crea un objeto jQuery con los párrafos cuyo texto tiene una longitud mayor de 10 caracteres. 
+Muestra por consola el texto de los párrafos seleccionados. Utiliza el método $.grep()
+*/
+
+/**
+ * SINTAXIS de each:
+ * $.each( vector, function( index, value ) {
+  alert( key + ": " + value );
+});
+ * */
+
+
+$(document).ready(function() {
+
+    var numeros=[0,1,2,3,4,5,6];
+    var numeros3=[];
+    var numeros4=[];
+
+ 
+    console.log(numeros);
+    
+    //Crear array con los números del primer array multiplicados * 3 con el método each:
+    $.each(numeros,function(index,value){
+        numeros3[index]= numeros[index]*3;
+    });
+    console.log(numeros3);
+
+    //Crear array con los números del primer array multiplicados * 4 con el método map:
+    numeros4= $.map(numeros, function(value){
+       return value * 4;
+    });
+
+    console.log(numeros4);
+
+    //Crea un array formado por los elementos tres arrays anteriores, pero sin modificar el contenido de esos arrays.
+
+    var arrayUnido= $.merge($.merge(numeros,numeros3),numeros4);
+    console.log(arrayUnido);
+
+    //Número de párrafos que hay en el documento:
+    var numeroParrafos = $("p").length;
+    console.log("Número de párrafos: " + numeroParrafos);
+
+    //Extrae el tercer párrafo, utilizando el método .get(), y muestra su texto en consola.
+
+    var tercerp = $("p").get(2);
+    console.log(tercerp.innerHTML);
+
+
+    //Crea un array cuyos elementos sean el texto de los párrafos (utiliza el método $.makeArray(). Muéstralo por consola.
+    //convierte un array JQ a JS
+
+    var parrafos= $("p");
+
+    
+    $arrayTexto1= $.map(parrafos, function(value){
+       return value.innerHTML;
+    });
+
+    var $arrayTexto= $.makeArray($arrayTexto1);
+
+    console.log($arrayTexto);
+
+    //párrafos cuyo texto tiene una longitud mayor de 10 caracteres. 
+
+    var vector1 = $.grep( parrafos, function (elemento,indice) {
+            return elemento.innerHTML.length > 10;
+      });
+
+    console.log(vector1);
+
+});
+
+
+
+    </script>
+</body>
+</html>

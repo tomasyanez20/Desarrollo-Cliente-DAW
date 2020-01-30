@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            display:block;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <img src="jesse.png">
+    <img src="walt.png">
+    <img src="sreider.png">
+
+    <div>
+        
+        <button id="Restaurar">Restaurar imagen</button>
+        <button id="Rotar">Rotar imagen</button>
+        <button id="Ocultar">Ocultar imagen</button>
+        <button id="Mostrar">Mostrar imagen</button>
+    </div>
+
+    <script src="../jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script>
+        /*
+  14.	IMÁGENES
+Crea un archivo HTML que tenga tres imágenes. Añade cuatro botones: "Restaurar", "Rotar", "Ocultar" y "Mostrar".
+Necesitaremos además otras tres imágenes para sustituir a las originales en algunos de los efectos.
+Realiza con jQuery las siguientes operaciones:
+
+•	Al colocarnos con el ratón sobre cualquiera de las imágenes, se mostrará otra imagen en su lugar.
+ También mostrará un mensaje con la ruta href correspondiente a la imagen que se está mostrando.
+
+•	Al hacer clic sobre cualquiera de las imágenes, su tamaño se aumentará y mostrará un mensaje con
+ el tamaño actual. Si volvemos a hacer clic sobre ella, volverá al tamaño original.
+
+
+•	Si hacemos clic sobre el botón "Restaurar", las imágenes volverán al tamaño original.
+•	Si hacemos clic sobre el botón "Rotar", las imágenes cambiarán de la primera a la segunda, 
+de la segunda a la tercera, y de la tercera a la primera.
+•	Si hacemos clic sobre el botón "Ocultar", las imágenes desaparecerán.
+•	Si hacemos clic sobre el botón "Mostrar", las imágenes aparecerán de nuevo.
+
+
+ * */
+
+
+$(document).ready(function () {
+   
+    $("img").hover(function(){
+        var ruta="saul.png"
+        $(this).attr("src",ruta);
+        console.log($(this).attr("src"));
+    });
+
+    var ancho1;
+    var alto1;
+    var flag=false;
+    var cont=0;
+
+    $("img").click(function(){
+        if(cont==0){
+            ancho1= $(this).width();
+            alto1=$(this).height();
+        }
+        
+        if(flag==false){
+            $(this).animate({width:"+=60px", height:"+=60px"});
+            console.log("ancho: " + $(this).width() + "px - alto: " + $(this).height() + " px");
+            flag=true;
+            cont++;
+        }else if(flag==true){
+            $(this).height(alto1);
+            $(this).width(ancho1);
+            flag=false;
+            cont++;
+        }      
+    });
+
+    $("#Restaurar").click(function(){
+
+    });
+
+    var ruta;
+
+    $("#Rotar").click(function(){
+        var imagenes = $("img");
+        imagenes.each(function(){
+            ruta= $(this).attr("src")
+            $(this).next().attr("src",ruta);
+        });
+    });
+
+    $("#Ocultar").click(function(){
+        $("img").hide();
+    });
+
+    $("#Mostrar").click(function(){
+        $("img").show();
+    });
+
+
+});
+
+
+
+    </script>
+</body>
+
+</html>
